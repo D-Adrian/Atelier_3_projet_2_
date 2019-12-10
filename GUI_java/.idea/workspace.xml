@@ -74,38 +74,58 @@
     <option name="LAST_COMMIT_MESSAGE" value="add dependencies and connexion message with command" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="117" y="22" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575984805290">
+    <state x="282" y="101" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575985305356">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="117" y="22" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1575984805290" />
+    <state x="282" y="101" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1575985305356" />
     <state x="104" y="40" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1280.709@0.23.1280.709" timestamp="1575969224715" />
     <state x="390" y="151" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1575984801646">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="390" y="151" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1440.900@0.0.1440.900" timestamp="1575984801646" />
-    <state width="812" height="245" key="GridCell.Tab.0.bottom" timestamp="1575984721144">
+    <state width="812" height="245" key="GridCell.Tab.0.bottom" timestamp="1575985244121">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="812" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1575984721144" />
+    <state width="812" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1575985244121" />
     <state width="1218" height="162" key="GridCell.Tab.0.bottom/0.23.1280.709@0.23.1280.709" timestamp="1575969262479" />
-    <state width="812" height="245" key="GridCell.Tab.0.center" timestamp="1575984721142">
+    <state width="812" height="245" key="GridCell.Tab.0.center" timestamp="1575985244120">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="812" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1575984721142" />
+    <state width="812" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1575985244120" />
     <state width="1218" height="162" key="GridCell.Tab.0.center/0.23.1280.709@0.23.1280.709" timestamp="1575969262478" />
-    <state width="812" height="245" key="GridCell.Tab.0.left" timestamp="1575984721141">
+    <state width="812" height="245" key="GridCell.Tab.0.left" timestamp="1575985244119">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="812" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1575984721141" />
+    <state width="812" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1575985244119" />
     <state width="1218" height="162" key="GridCell.Tab.0.left/0.23.1280.709@0.23.1280.709" timestamp="1575969262477" />
-    <state width="812" height="245" key="GridCell.Tab.0.right" timestamp="1575984721143">
+    <state width="812" height="245" key="GridCell.Tab.0.right" timestamp="1575985244121">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="812" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1575984721143" />
+    <state width="812" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1575985244121" />
     <state width="1218" height="162" key="GridCell.Tab.0.right/0.23.1280.709@0.23.1280.709" timestamp="1575969262478" />
+    <state width="812" height="303" key="GridCell.Tab.1.bottom" timestamp="1575985193461">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="812" height="303" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1575985193461" />
+    <state width="812" height="303" key="GridCell.Tab.1.center" timestamp="1575985193460">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="812" height="303" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1575985193460" />
+    <state width="812" height="303" key="GridCell.Tab.1.left" timestamp="1575985193459">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="812" height="303" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1575985193459" />
+    <state width="812" height="303" key="GridCell.Tab.1.right" timestamp="1575985193461">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="812" height="303" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1575985193461" />
     <state x="0" y="89" key="SettingsEditor" timestamp="1575984715133">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="0" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1575984715133" />
+    <state x="216" y="374" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1575985228959">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="216" y="374" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1575985228959" />
   </component>
 </project>

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class App {
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
 
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://172.20.10.7:3306/BaseDeDonnee", "Eddy", "shayze7895");
