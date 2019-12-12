@@ -10,9 +10,7 @@ public class App {
     public static void main(String[] args) {
 
         Connexion connexion = new Connexion();
-        Gui gui = new Gui();
-
-        Gui.window((String[]) JFrame);
+        Gui window = new Gui();
 
 
 
