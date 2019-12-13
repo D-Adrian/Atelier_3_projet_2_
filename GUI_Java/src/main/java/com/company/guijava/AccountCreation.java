@@ -10,26 +10,57 @@ public class AccountCreation extends JFrame {
 
     public AccountCreation() {
 
+        /** CREATION DE LA FENETRE "acc" */
+
+
         JFrame acc = new JFrame("Account Creation");
+
+
+        /** CREATION DU Label "label" */
+
+
         final JLabel label = new JLabel();
         label.setBounds(20, 150, 200, 50);
-        final JPasswordField value = new JPasswordField();
-        value.setBounds(100, 75, 100, 30);
+
+
+        /** CASE AVEC VALEUR */
+
+
+        final JTextField nom = new JTextField();
+        nom.setBounds(165, 20, 100, 30);
+
+        final JTextField prenom = new JTextField();
+        prenom.setBounds(165, 75, 100, 30);
+
+        final JTextField mail = new JTextField();
+        mail.setBounds(165, 130, 100, 30);
+
+        final JPasswordField password = new JPasswordField();
+        password.setBounds(165, 185, 100, 30);
+
+        final JTextField numero = new JTextField();
+        numero.setBounds(165, 240, 100, 30);
+
+        final JTextField adresse = new JTextField();
+        adresse.setBounds(165, 295, 100, 30);
+
+        final JTextField postale = new JTextField();
+        postale.setBounds(165, 295, 100, 30);
+
+        final JTextField postal = new JTextField();
+        postal.setBounds(165, 350, 100, 30);
+
+        final JTextField distance = new JTextField();
+        distance.setBounds(165, 405, 100, 30);
+
+
+
+
+
+        /** AJOUTE TOUTES LES ZONES DE TEXTE AINSI QUE LEURS POSITIONS */
+
         JPanel pannel = new JPanel();
         pannel.setBounds(5, 530, 600, 40);
-        final JLabel lab1 = new JLabel();
-        label.setBounds(20, 150, 200, 50);
-        final JLabel lab2 = new JLabel();
-        label.setBounds(20, 150, 200, 50);
-        final JLabel lab3 = new JLabel();
-        label.setBounds(20, 150, 200, 50);
-        final JLabel lab4 = new JLabel();
-        label.setBounds(20, 150, 200, 50);
-        final JLabel lab5 = new JLabel();
-        label.setBounds(20, 150, 200, 50);
-        final JLabel lab6 = new JLabel();
-        label.setBounds(20, 150, 200, 50);
-
 
         JLabel l1 = new JLabel("nom :");
         l1.setBounds(20, 20, 80, 30);
@@ -52,6 +83,8 @@ public class AccountCreation extends JFrame {
 
 
 
+        /** AJOUTE LE CHOIX PAR BOUTON (NON FONCTIONNEL) */
+
         ButtonGroup group = new ButtonGroup();
         JRadioButton radio1 = new JRadioButton("User");
         radio1.setMnemonic(KeyEvent.VK_1);
@@ -67,11 +100,17 @@ public class AccountCreation extends JFrame {
         //l10.setBounds(20, 515, 150, 30);
 
 
+        /** AJOUT DU BOUTON "b" */
+
+
         JButton b = new JButton("Create");
         b.setBounds(500, 600, 80, 50);
-        final JTextField text = new JTextField();
-        text.setBounds(100, 20, 100, 30);
-        acc.add(value);
+
+
+        /** AJOUTS DES CASES CREES PRECEDEMENT */
+
+        acc.add(nom);
+        acc.add(password);
         acc.add(l1);
         acc.add(label);
         acc.add(l2);
@@ -82,39 +121,52 @@ public class AccountCreation extends JFrame {
         acc.add(l7);
         acc.add(l8);
         acc.add(l9);
+        acc.add(prenom);
+        acc.add(mail);
+        acc.add(numero);
+        acc.add(adresse);
+        acc.add(postale);
+        acc.add(postal);
+        acc.add(distance);
+
         //acc.add(l10);
         acc.add(radio1);
         acc.add(radio2);
 
-        acc.add(b);
-        acc.add(text);
-        acc.setSize(600, 700);
+
+        acc.add(b); // AJOUT DU BOUTON "b" SUR LA FENETRE "acc"
+
+
+        acc.setSize(600, 700); // permet de définir les dimensions
         acc.setLocationRelativeTo(null); // Affiche la fenetre au centre de l'écran
         acc.setLayout(null);
-        acc.setVisible(true);
+        acc.setVisible(true); // Faire apparaître la fenêtre acc
 
         b.addActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent e) {
 
-                System.out.println("Voici vos informations: ");
-                String data = "nom: " + text.getText();
-                data += ", Prénom: " + text.getText();
-                data += ", Mail: " + text.getText();
-                data += ", Password: "
-                        + new String(value.getPassword());
-                data += ", numéro portable: " + text.getText();
-                data += ", adresse postale: " + text.getText();
-                data += ", code postal: " + text.getText();
-                data += ", siège le plus proche: " + text.getText();
-                data += ", distance estime: " + text.getText();
+                /** RAJOUTE TOUTES LES INFOS UTILISATEUR DANS UNE DATA */
 
-                JTextArea  textArea1 = new JTextArea (data);
-                JScrollPane scrollPane = new JScrollPane(textArea1);
+                System.out.println("Voici vos informations: ");
+                String data = "nom: " + nom.getText();
+                data += ", Prénom: " + nom.getText();
+                data += ", Mail: " + nom.getText();
+                data += ", Password: "
+                        + new String(password.getPassword());
+                data += ", numéro portable: " + nom.getText();
+                data += ", adresse postale: " + nom.getText();
+                data += ", code postal: " + nom.getText();
+                data += ", siège le plus proche: " + nom.getText();
+                data += ", distance estime: " + nom.getText();
+
+                JTextArea  textArea1 = new JTextArea (data); // ECRIT LA DATA DANS UNE TextArea
+                JScrollPane scrollPane = new JScrollPane(textArea1); // Met le TextArea dans un ScrollPanel plus simple pour l'affichage
                 //pannel.setBounds(20, 600, 400, 100);
-                scrollPane.setPreferredSize(new Dimension(560, 222));
-                pannel.add(scrollPane);
-                acc.getContentPane().add(pannel);
-                acc.setVisible(true);
+                scrollPane.setPreferredSize(new Dimension(560, 222)); // défini les dimensions du ScrollPanel
+                pannel.add(scrollPane); // Add ScrollPanel to the Pannel
+                acc.getContentPane().add(pannel); // Add the Pannel to the window
+                acc.setVisible(true); // Set it visible
                 //label.setText(data);
 
             }
