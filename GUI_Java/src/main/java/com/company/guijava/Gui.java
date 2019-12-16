@@ -38,7 +38,7 @@ public class Gui extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE D'INSCRIPTION
 
-                AccountCreation acc = new AccountCreation();
+                UserAccountCreation but = new UserAccountCreation();
             }
         });
 

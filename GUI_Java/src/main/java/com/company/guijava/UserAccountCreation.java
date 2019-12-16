@@ -6,9 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
-public class AccountCreation extends JFrame {
+public class UserAccountCreation extends JFrame {
 
-    public AccountCreation() {
+    public UserAccountCreation() {
 
         /** CREATION DE LA FENETRE "acc" */
 
@@ -27,33 +27,31 @@ public class AccountCreation extends JFrame {
 
 
         final JTextField nom = new JTextField();
-        nom.setBounds(165, 20, 100, 30);
+        nom.setBounds(195, 20, 100, 30);
 
         final JTextField prenom = new JTextField();
-        prenom.setBounds(165, 75, 100, 30);
+        prenom.setBounds(195, 75, 100, 30);
 
         final JTextField mail = new JTextField();
-        mail.setBounds(165, 130, 100, 30);
+        mail.setBounds(195, 130, 100, 30);
 
         final JPasswordField password = new JPasswordField();
-        password.setBounds(165, 185, 100, 30);
+        password.setBounds(195, 185, 100, 30);
 
         final JTextField numero = new JTextField();
-        numero.setBounds(165, 240, 100, 30);
+        numero.setBounds(195, 240, 100, 30);
 
         final JTextField adresse = new JTextField();
-        adresse.setBounds(165, 295, 100, 30);
-
-        final JTextField postale = new JTextField();
-        postale.setBounds(165, 295, 100, 30);
+        adresse.setBounds(195, 295, 100, 30);
 
         final JTextField postal = new JTextField();
-        postal.setBounds(165, 350, 100, 30);
+        postal.setBounds(195, 350, 100, 30);
+
+        final JTextField siege = new JTextField();
+        siege.setBounds(195, 405, 100, 30);
 
         final JTextField distance = new JTextField();
-        distance.setBounds(165, 405, 100, 30);
-
-
+        distance.setBounds(195, 460, 100, 30);
 
 
 
@@ -76,25 +74,16 @@ public class AccountCreation extends JFrame {
         l6.setBounds(20, 295, 150, 30);
         JLabel l7 = new JLabel("code postal :");
         l7.setBounds(20, 350, 150, 30);
-        JLabel l8 = new JLabel("siège le plus proche :");
-        l8.setBounds(20, 405, 150, 30);
-        JLabel l9 = new JLabel("distance estime :");
-        l9.setBounds(20, 460, 150, 30);
+        JLabel l8 = new JLabel("siège le plus proche (ville) :");
+        l8.setBounds(20, 405, 190, 30);
+        JLabel l9 = new JLabel("distance estime (en km) :");
+        l9.setBounds(20, 460, 175, 30);
 
 
 
         /** AJOUTE LE CHOIX PAR BOUTON (NON FONCTIONNEL) */
 
-        ButtonGroup group = new ButtonGroup();
-        JRadioButton radio1 = new JRadioButton("User");
-        radio1.setMnemonic(KeyEvent.VK_1);
-        radio1.setActionCommand("User");
-        radio1.setSelected(true);
-
-        JRadioButton radio2 = new JRadioButton("Admin");
-        radio2.setMnemonic(KeyEvent.VK_2);
-        radio2.setActionCommand("Admin");
-
+        Button but = new Button();
 
         //JLabel l10 = new JLabel("role utilisateur :");
         //l10.setBounds(20, 515, 150, 30);
@@ -125,14 +114,12 @@ public class AccountCreation extends JFrame {
         acc.add(mail);
         acc.add(numero);
         acc.add(adresse);
-        acc.add(postale);
         acc.add(postal);
+        acc.add(siege);
         acc.add(distance);
+        acc.add(but);
 
         //acc.add(l10);
-        acc.add(radio1);
-        acc.add(radio2);
-
 
         acc.add(b); // AJOUT DU BOUTON "b" SUR LA FENETRE "acc"
 
@@ -150,15 +137,15 @@ public class AccountCreation extends JFrame {
 
                 System.out.println("Voici vos informations: ");
                 String data = "nom: " + nom.getText();
-                data += ", Prénom: " + nom.getText();
-                data += ", Mail: " + nom.getText();
+                data += ", Prénom: " + prenom.getText();
+                data += ", Mail: " + mail.getText();
                 data += ", Password: "
                         + new String(password.getPassword());
-                data += ", numéro portable: " + nom.getText();
-                data += ", adresse postale: " + nom.getText();
-                data += ", code postal: " + nom.getText();
-                data += ", siège le plus proche: " + nom.getText();
-                data += ", distance estime: " + nom.getText();
+                data += ", numéro portable: " + numero.getText();
+                data += ", adresse postale: " + adresse.getText();
+                data += ", code postal: " + postal.getText();
+                data += ", siège le plus proche: " + siege.getText();
+                data += ", distance estime: " + distance.getText();
 
                 JTextArea  textArea1 = new JTextArea (data); // ECRIT LA DATA DANS UNE TextArea
                 JScrollPane scrollPane = new JScrollPane(textArea1); // Met le TextArea dans un ScrollPanel plus simple pour l'affichage
