@@ -6,9 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
-public class UserAccountCreation extends JFrame {
+public class AccountCreation extends JFrame {
 
-    public UserAccountCreation() {
+    public AccountCreation() {
 
         /** CREATION DE LA FENETRE "acc" */
 

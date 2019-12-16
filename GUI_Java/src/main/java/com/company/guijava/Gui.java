@@ -17,7 +17,7 @@ public class Gui extends JFrame {
         };
         addWindowListener(l);
 
-        JFrame window = new JFrame("Graphical User Interface");
+        JFrame window = new JFrame("Leroy Merlu");
         window.setSize(800, 500);
         window.setLocationRelativeTo(null);
         //JButton bouton = new JButton("Mon bouton");
@@ -38,7 +38,7 @@ public class Gui extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE D'INSCRIPTION
 
-                UserAccountCreation but = new UserAccountCreation();
+                AccountCreation acc = new AccountCreation();
             }
         });
 
@@ -73,7 +73,7 @@ public class Gui extends JFrame {
         window.setIconImage(getIconImage());
         window.add(petitLogo);
 
-        ImageIcon icon = new ImageIcon("imgs/database-icon.png");
+        ImageIcon icon = new ImageIcon("imgs/Leroy_Merlu.png");
         JLabel logo = new JLabel("", icon, JLabel.CENTER);
         window.add(logo);
 
