@@ -6,12 +6,24 @@ import java.awt.event.ActionListener;
 
 public class Login extends JFrame {
 
+    JTextField text = new JTextField();
+
+    JTextField value = new JTextField();
+
+    public String getValue() {
+        return value.getText();
+    }
+
+    public String getText() {
+        return text.getText();
+    }
+
     public Login() {
 
         JFrame signup = new JFrame("Sign Up");
         final JLabel label = new JLabel();
         label.setBounds(20, 150, 200, 50);
-        final JPasswordField value = new JPasswordField();
+        this.value = new JPasswordField();
         value.setBounds(100, 75, 100, 30);
         JLabel l1 = new JLabel("Username:");
         l1.setBounds(20, 20, 80, 30);
@@ -19,7 +31,7 @@ public class Login extends JFrame {
         l2.setBounds(20, 75, 80, 30);
         JButton b = new JButton("Login");
         b.setBounds(100, 120, 80, 30);
-        final JTextField text = new JTextField();
+        this.text = new JTextField();
         text.setBounds(100, 20, 100, 30);
         signup.add(value);
         signup.add(l1);
@@ -31,12 +43,10 @@ public class Login extends JFrame {
         signup.setLayout(null);
         signup.setVisible(true);
 
+        Connexion co = new Connexion();
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String data = "Username " + text.getText();
-                data += ", Password: "
-                        + new String(value.getPassword());
-                label.setText(data);
+                co.connect(getText(),getValue());
             }
         });
 

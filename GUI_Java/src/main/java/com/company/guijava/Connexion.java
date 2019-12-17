@@ -6,19 +6,14 @@ import java.sql.SQLException;
 
 
 public class Connexion {
-    public Connection connect() {
-
-        Connection connection = null;
-
+    public void connect(String text, String value) {
         {
             try {
-                connection = DriverManager.getConnection("jdbc:mysql://172.20.10.7:3306/BaseDeDonnee", "Eddy", "shayze7895");
+                DriverManager.getConnection("jdbc:mysql://192.168.43.254:3306/BaseDeDonnee", text, value);
                 System.out.println("Connected to Database");
-                return connection;
             } catch (SQLException e) {
                 e.printStackTrace();
                 System.out.println("Error");
-                return null;
             }
         }
     }

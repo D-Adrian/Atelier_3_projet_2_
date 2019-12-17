@@ -13,20 +13,16 @@ public class App {
         Gui window = new Gui();
 
 
-
+/*
         System.out.println("try ");
-        String request = "SELECT id FROM utilisateur";
+        String request = "SELECT * FROM client";
+        try {
+            Statement statement = connexion.connect().createStatement(); ResultSet results = statement.executeQuery(request);
+        } catch (SQLException e) {
+            //traitement de l'exception
+        }
 
-
-            try {
-                Statement statement = connexion.connect().createStatement();
-                ResultSet results = statement.executeQuery(request);
-                int id = results.getInt("id");
-                System.out.println(id);
-                System.out.println(results);
-            } catch (SQLException e) {
-                //traitement de l'exception
-            }
+ */
 
 
 
