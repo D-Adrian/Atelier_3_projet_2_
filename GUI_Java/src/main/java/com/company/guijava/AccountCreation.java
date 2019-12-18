@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 
 public class AccountCreation extends JFrame {
 
@@ -139,8 +138,7 @@ public class AccountCreation extends JFrame {
                 String data = "nom: " + nom.getText();
                 data += ", Prénom: " + prenom.getText();
                 data += ", Mail: " + mail.getText();
-                data += ", Password: "
-                        + new String(password.getPassword());
+                data += ", Password: " + (password.getText());
                 data += ", numéro portable: " + numero.getText();
                 data += ", adresse postale: " + adresse.getText();
                 data += ", code postal: " + postal.getText();
@@ -156,7 +154,12 @@ public class AccountCreation extends JFrame {
                 acc.setVisible(true); // Set it visible
                 //label.setText(data);
 
-            }
+
+                Request request = new Request();
+                request.signupRequest(nom.getText(), prenom.getText(), mail.getText(),password.getText(),numero.getText(),adresse.getText(),postal.getText(),siege.getText(),distance.getText());
+
+
+                }
         });
     }
 }

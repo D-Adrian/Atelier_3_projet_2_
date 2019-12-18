@@ -9,7 +9,7 @@ public class App {
 
     public static void main(String[] args) {
 
-        com.company.guijava.Connexion connexion = new com.company.guijava.Connexion();
+        Connexion connexion = new Connexion();
         Gui window = new Gui();
 
 

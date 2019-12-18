@@ -1,11 +1,13 @@
 package com.company.guijava;
 
 import javax.swing.*;
+import javax.tools.Diagnostic;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Login extends JFrame {
 
+    boolean isInDatabase;
     JTextField text = new JTextField();
 
     JTextField value = new JTextField();
@@ -25,7 +27,7 @@ public class Login extends JFrame {
         label.setBounds(20, 150, 200, 50);
         this.value = new JPasswordField();
         value.setBounds(100, 75, 100, 30);
-        JLabel l1 = new JLabel("Username:");
+        JLabel l1 = new JLabel("Mail:");
         l1.setBounds(20, 20, 80, 30);
         JLabel l2 = new JLabel("Password:");
         l2.setBounds(20, 75, 80, 30);
@@ -39,17 +41,17 @@ public class Login extends JFrame {
         signup.add(l2);
         signup.add(b);
         signup.add(text);
-        signup.setSize(300, 250);
+        signup.setSize(250, 210);
+        signup.setResizable(false);
         signup.setLayout(null);
         signup.setVisible(true);
-
+        /*
         com.company.guijava.Connexion co = new com.company.guijava.Connexion();
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 co.connect(getText(),getValue());
             }
-        });
-
+        });*/
         JPanel pannel = new JPanel();
         JLabel jLabel1 =new JLabel("Mon texte dans JLabel");
         pannel.add(jLabel1);
@@ -65,6 +67,25 @@ public class Login extends JFrame {
         signup.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         signup.setLocationRelativeTo(null); // Affiche la fenetre au centre de l'écran
         signup.setVisible(true);
+
+
+
+
+
+
+
+        Request request = new Request();
+        b.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean isIndatabase =request.loginRequest(getText(), getValue());
+                if (isIndatabase){
+                    System.out.println("in database");
+                    UserWindow uw = new UserWindow();
+                }
+            }
+        });
+
     }
 }
 
