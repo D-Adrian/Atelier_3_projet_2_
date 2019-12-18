@@ -43,7 +43,7 @@ public class Login extends JFrame {
         signup.setLayout(null);
         signup.setVisible(true);
 
-        Connexion co = new Connexion();
+        com.company.guijava.Connexion co = new com.company.guijava.Connexion();
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 co.connect(getText(),getValue());
