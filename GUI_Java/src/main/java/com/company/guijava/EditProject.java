@@ -11,19 +11,19 @@ public class EditProject extends JFrame {
         JFrame ep = new JFrame("Product Features");
 
         final JLabel label = new JLabel();
-        label.setBounds(190, 10, 300, 40);
+        label.setBounds(210, 10, 300, 40);
         label.setFont(new Font("Courier New",Font.BOLD, 18));
         label.setForeground(Color.red);
-        label.setText(" Choose an Option ! ");
+        label.setText(" Project List ");
 
-        JButton b = new JButton("New Product");
-        b.setBounds(150, 140, 160, 60);
+        JButton b = new JButton("Add Product");
+        b.setBounds(20, 500, 160, 60);
 
         JButton c = new JButton("Edit Product");
-        c.setBounds(210, 280, 160, 60);
+        c.setBounds(220, 500, 160, 60);
 
-        JButton d = new JButton("Delete a Product");
-        d.setBounds(270, 420, 160, 60);
+        JButton d = new JButton("Delete Product");
+        d.setBounds(420, 500, 160, 60);
 
         this.setSize(600, 600);
         this.setLocationRelativeTo(null);

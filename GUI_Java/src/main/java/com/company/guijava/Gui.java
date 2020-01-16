@@ -9,13 +9,6 @@ public class Gui extends JFrame {
 
     public Gui() {
 
-        WindowListener l = new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                System.exit(0);
-            }
-        };
-        addWindowListener(l);
-
         JFrame window = new JFrame("Leroy Merlu");
         window.setSize(800, 500);
         window.setLocationRelativeTo(null);
@@ -28,7 +21,7 @@ public class Gui extends JFrame {
 
         JMenuBar menuBar = new JMenuBar();
         menuBar.setOpaque(true);
-        menuBar.setBackground(Color.orange); // NON FONCTIONNEL SUR MacOS
+        menuBar.setBackground(Color.blue); // NON FONCTIONNEL SUR MacOS
         window.setJMenuBar(menuBar);
 
         JMenu menu = new JMenu("Menu");
@@ -50,6 +43,14 @@ public class Gui extends JFrame {
             }
         });
 
+        menu.add("Admin").addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE DE VERIF
+
+                AdminVerif af = new AdminVerif();
+            }
+        });
+
         menu.add("Exit").addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -67,12 +68,10 @@ public class Gui extends JFrame {
         //panneau.add(bouton);
         //setContentPane(panneau);
 
-        ImageIcon img = new ImageIcon("imgs/ez.png");
-        JLabel petitLogo = new JLabel("", img, JLabel.CENTER); // NON FONCTIONNEL
-        window.setIconImage(getIconImage());
-        window.add(petitLogo);
+        Image icon1 = new javax.swing.ImageIcon("GUI_Java/imgs/ez.png").getImage();
+        window.setIconImage(icon1);
 
-        ImageIcon icon = new ImageIcon("imgs/Leroy_Merlu.png");
+        ImageIcon icon = new ImageIcon("GUI_Java/imgs/Leroy_Merlu.png");
         JLabel logo = new JLabel("", icon, JLabel.CENTER);
         window.add(logo);
 

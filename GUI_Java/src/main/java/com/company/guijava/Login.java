@@ -56,12 +56,9 @@ public class Login extends JFrame {
         JLabel jLabel1 =new JLabel("Mon texte dans JLabel");
         pannel.add(jLabel1);
 
-        ImageIcon icone = new ImageIcon("ez.png");
-        JLabel jLabel2 =new JLabel(icone);
-        pannel.add(jLabel2);
-
-        JLabel jLabel3 =new JLabel("Mon texte",icone,SwingConstants.LEFT);
-        pannel.add(jLabel3);
+        ImageIcon icon = new ImageIcon("GUI_Java/imgs/database-icon.png");
+        JLabel logo = new JLabel("", icon, JLabel.CENTER);
+        signup.add(logo);
 
         signup.getContentPane().add(pannel);
         signup.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -74,16 +71,11 @@ public class Login extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                UserWindow uw = new UserWindow();
-
-
-
-
-                /*boolean isIndatabase =request.loginRequest(getText(), getValue());
+                boolean isIndatabase =request.loginRequest(getText(), getValue());
                 if (isIndatabase){
                     System.out.println("in database");    // A REMETTRE QUAND LA BDD EST ON
                     UserWindow uw = new UserWindow();
-                }*/
+                }
             }
         });
 

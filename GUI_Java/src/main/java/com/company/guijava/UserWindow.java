@@ -12,19 +12,19 @@ public class UserWindow extends JFrame {
         JFrame uw = new JFrame("Project Features");
 
         final JLabel label = new JLabel();
-        label.setBounds(190, 10, 300, 40);
+        label.setBounds(210, 10, 300, 40);
         label.setFont(new Font("Courier New", Font.BOLD, 18));
         label.setForeground(Color.red);
-        label.setText(" Choose an Option ! ");
+        label.setText(" Project List ");
 
         JButton b = new JButton("New Project");
-        b.setBounds(150, 140, 160, 60);
+        b.setBounds(20, 500, 160, 60);
 
         JButton c = new JButton("Edit Project");
-        c.setBounds(210, 280, 160, 60);
+        c.setBounds(220, 500, 160, 60);
 
         JButton d = new JButton("End a Project");
-        d.setBounds(270, 420, 160, 60);
+        d.setBounds(420, 500, 160, 60);
 
 
         this.setSize(600, 600);
