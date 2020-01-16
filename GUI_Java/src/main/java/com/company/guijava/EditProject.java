@@ -2,30 +2,28 @@ package com.company.guijava;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class UserWindow extends JFrame {
+public class EditProject extends JFrame {
 
-    public UserWindow() {
+    public EditProject(){
 
-        JFrame uw = new JFrame("Project Features");
+
+        JFrame ep = new JFrame("Product Features");
 
         final JLabel label = new JLabel();
         label.setBounds(190, 10, 300, 40);
-        label.setFont(new Font("Courier New", Font.BOLD, 18));
+        label.setFont(new Font("Courier New",Font.BOLD, 18));
         label.setForeground(Color.red);
         label.setText(" Choose an Option ! ");
 
-        JButton b = new JButton("New Project");
+        JButton b = new JButton("New Product");
         b.setBounds(150, 140, 160, 60);
 
-        JButton c = new JButton("Edit Project");
+        JButton c = new JButton("Edit Product");
         c.setBounds(210, 280, 160, 60);
 
-        JButton d = new JButton("End a Project");
+        JButton d = new JButton("Delete a Product");
         d.setBounds(270, 420, 160, 60);
-
 
         this.setSize(600, 600);
         this.setLocationRelativeTo(null);
@@ -38,17 +36,11 @@ public class UserWindow extends JFrame {
 
 
 
-        c.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
-                EditProject ep = new EditProject();
 
-            }
-        });
+
     }
+
+
+
 }
-
-
-
-

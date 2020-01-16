@@ -9,7 +9,6 @@ public class Gui extends JFrame {
 
     public Gui() {
 
-
         WindowListener l = new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 System.exit(0);
@@ -29,7 +28,7 @@ public class Gui extends JFrame {
 
         JMenuBar menuBar = new JMenuBar();
         menuBar.setOpaque(true);
-        menuBar.setBackground(Color.orange); // NON FONCTIONNEL
+        menuBar.setBackground(Color.orange); // NON FONCTIONNEL SUR MacOS
         window.setJMenuBar(menuBar);
 
         JMenu menu = new JMenu("Menu");
@@ -55,7 +54,7 @@ public class Gui extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Permet de fermer le processus avec la croix rouge
+                System.exit(0); //Permet de fermer le processus avec la croix rouge
 
             }
         });

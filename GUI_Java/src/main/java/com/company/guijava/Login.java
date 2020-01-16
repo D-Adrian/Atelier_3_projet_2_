@@ -69,20 +69,21 @@ public class Login extends JFrame {
         signup.setVisible(true);
 
 
-
-
-
-
-
         Request request = new Request();
         b.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean isIndatabase =request.loginRequest(getText(), getValue());
+
+                UserWindow uw = new UserWindow();
+
+
+
+
+                /*boolean isIndatabase =request.loginRequest(getText(), getValue());
                 if (isIndatabase){
-                    System.out.println("in database");
+                    System.out.println("in database");    // A REMETTRE QUAND LA BDD EST ON
                     UserWindow uw = new UserWindow();
-                }
+                }*/
             }
         });
 
