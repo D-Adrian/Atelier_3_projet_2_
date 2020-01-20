@@ -1,9 +1,9 @@
 package com.company.guijava;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 
 public class AdminVerif extends JFrame{
 
@@ -29,6 +29,7 @@ public class AdminVerif extends JFrame{
             }
         });
 
+        this.setLocationRelativeTo(null);
         this.setSize(250, 210);
         this.setResizable(false);
         this.setLayout(null);
