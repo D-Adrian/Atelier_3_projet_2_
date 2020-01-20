@@ -18,11 +18,27 @@ public class AdminMenu extends JFrame {
 
         JMenu menu = new JMenu("Menu");
 
+        menu.add("Dashboard").addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE STATS
+
+                Dashboard d = new Dashboard();
+            }
+        });
+
         menu.add("Stats").addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE STATS
 
                 StatsWindow sw = new StatsWindow();
+            }
+        });
+
+        menu.add("Devis").addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE STATS
+
+                DevisWindow sw = new DevisWindow();
             }
         });
         menuBar.add(menu);
