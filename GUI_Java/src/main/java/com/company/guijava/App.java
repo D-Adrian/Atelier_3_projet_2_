@@ -1,7 +1,6 @@
 package com.company.guijava;
 
-import javax.swing.*;
-import java.sql.*;
+import com.company.guijava.Windows.Gui;
 
 public class App {
 

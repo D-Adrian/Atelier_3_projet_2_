@@ -1,7 +1,8 @@
 package com.company.guijava;
 
+import com.company.guijava.Windows.AdminMenu;
+
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
