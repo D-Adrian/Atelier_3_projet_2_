@@ -71,16 +71,14 @@ public class Login extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                boolean isIndatabase =request.loginRequest(getText(), getValue());
-                if (isIndatabase){
-                    System.out.println("in database");    // A REMETTRE QUAND LA BDD EST ON
-                    UserWindow uw = new UserWindow();
-                }
-            }
-        });
+                UserWindow uw = new UserWindow();
 
+                }
+            });
     }
+
 }
+
 
 
 

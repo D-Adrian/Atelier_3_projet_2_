@@ -2,6 +2,8 @@ package com.company.guijava;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class EditProject extends JFrame {
 
@@ -34,13 +36,14 @@ public class EditProject extends JFrame {
         this.add(d);
         this.setVisible(true);
 
+        c.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
+                EcranConfig am = new EcranConfig();
 
+            }
 
-
-
+        });
     }
-
-
-
 }

@@ -46,6 +46,15 @@ public class UserWindow extends JFrame {
 
             }
         });
+
+        b.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                NewProject np = new NewProject();
+
+            }
+        });
     }
 }
 

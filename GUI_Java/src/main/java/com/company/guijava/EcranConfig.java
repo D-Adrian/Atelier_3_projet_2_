@@ -18,6 +18,7 @@ public class EcranConfig extends JFrame
         this.setLayout(null);
         this.setVisible(true);
 
+
     }
 
 
