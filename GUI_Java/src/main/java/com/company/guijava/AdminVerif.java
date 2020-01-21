@@ -30,12 +30,14 @@ public class AdminVerif extends JFrame{
             }
         });
 
+        this.setLocationRelativeTo(null);
         this.setSize(250, 210);
         this.setResizable(false);
         this.setLayout(null);
         this.setVisible(true);
         this.add(b);
         this.add(l2);
+        this.setTitle("Verification");
         this.add(password);
 
 

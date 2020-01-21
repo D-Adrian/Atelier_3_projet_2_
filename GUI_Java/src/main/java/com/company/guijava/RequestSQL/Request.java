@@ -121,4 +121,63 @@ public class Request {
         }
     }
 
+    public List<String> favoriteColor(){
+        String requestColor = " SELECT count(couleur_module) as nombre_couleur,couleur_module\n" +
+                "        FROM personnalisation_porte\n" +
+                "        GROUP BY couleur_module\n" +
+                "        ORDER BY nombre_couleur DESC\n" +
+                "        LIMIT 3";
+        try {
+            prep1 = connexion.connect().prepareStatement(requestColor, ResultSet.TYPE_SCROLL_SENSITIVE);
+            ResultSet result = prep1.executeQuery();
+            List<String> values = request.seeRequest(result);
+            prep1.close();
+
+            return values;
+
+        }
+        catch(Exception e){
+            return null;
+        }
+
+    }
+
+    public List<String> nbProject(){
+        String requestProject = "SELECT count(tab.id) from (SELECT DISTINCT id_projet as id FROM produit_projet) as tab";
+        try {
+            prep1 = connexion.connect().prepareStatement(requestProject, ResultSet.TYPE_SCROLL_SENSITIVE);
+            ResultSet result = prep1.executeQuery();
+            List<String> values = request.seeRequest(result);
+            prep1.close();
+
+            return values;
+
+        }
+        catch(Exception e){
+            return null;
+        }
+    }
+
+    public List<String> gainTotal(){
+        String requestProject = "SELECT  month(projet.date_fin) as mois, (sum(prix_ht)) as total\n" +
+                "FROM produit_projet\n" +
+                "LEFT JOIN projet ON projet.id = produit_projet.id_projet \n" +
+                "where year(projet.date_fin)=2019\n" +
+                "group by mois\n" +
+                "ORDER BY projet.date_fin ASC";
+        try {
+            prep1 = connexion.connect().prepareStatement(requestProject, ResultSet.TYPE_SCROLL_SENSITIVE);
+            ResultSet result = prep1.executeQuery();
+            List<String> values = request.seeRequest(result);
+            prep1.close();
+
+            return values;
+
+        }
+        catch(Exception e){
+            return null;
+        }
+    }
+
+
 }

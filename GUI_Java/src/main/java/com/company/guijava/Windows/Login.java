@@ -23,7 +23,7 @@ public class Login extends JFrame {
 
     public Login() {
 
-        JFrame signup = new JFrame("Sign Up");
+        JFrame signup = new JFrame("Connexion");
         final JLabel label = new JLabel();
         label.setBounds(20, 150, 200, 50);
         this.value = new JPasswordField();
@@ -73,6 +73,7 @@ public class Login extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 UserWindow uw = new UserWindow();
+                    signup.dispose();
 
                 /*boolean isIndatabase =request.loginRequest(getText(), getValue());
                 if (isIndatabase){
