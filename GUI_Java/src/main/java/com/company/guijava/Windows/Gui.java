@@ -1,7 +1,5 @@
 package com.company.guijava.Windows;
 
-import com.company.guijava.AdminVerif;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -14,12 +12,6 @@ public class Gui extends JFrame {
         JFrame window = new JFrame("Leroy Merlu");
         window.setSize(800, 500);
         window.setLocationRelativeTo(null);
-        //JButton bouton = new JButton("Mon bouton");
-        //bouton.setSize(20,10);
-
-        JTextArea textArea1 = new JTextArea("WELCOME");
-        window.add(textArea1);
-        //window.getContentPane().add(bouton);
 
         JMenuBar menuBar = new JMenuBar();
         menuBar.setOpaque(true);
@@ -48,7 +40,7 @@ public class Gui extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE DE VERIF
 
-                AdminVerif af = new AdminVerif();
+                AdminVerif af = new AdminVerif(window);
             }
         });
 
@@ -77,26 +69,8 @@ public class Gui extends JFrame {
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Permet de fermer le processus avec la croix rouge
         window.setVisible(true);
+
+        Login login = new Login();
+
     }
-
-    /**Gui window = new Gui();
-
-     window.setTitle("Graphical User Interfaces"); // Donne un titre à notre fenêtre
-     window.setSize(800,500); // Permet de définir la taille (400 large, 100 hauteur)
-     window.setLocationRelativeTo(null); // Affiche la fenetre au centre de l'écran
-     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Permet de fermer le processus avec la croix rouge
-     window.setResizable(false); // autoriser la redimension de la fenetre (non)
-     window.setAlwaysOnTop(false); // Garder la fenêtre au premier plan (non)
-     window.setVisible(true); // afficher la fenetre (oui)
-
-     // creation objet pan
-     JPanel pan = new JPanel();
-     // couleur de fond
-     pan.setBackground(Color.GRAY);
-     // liée notre panel avec notre fenetre
-     window.setContentPane(pan);
-     // l'afficher
-     window.setVisible(true); */
-
-
 }

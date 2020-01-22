@@ -1,16 +1,18 @@
-package com.company.guijava;
+package com.company.guijava.Windows;
 
 import com.company.guijava.Windows.AdminMenu;
+import com.company.guijava.Windows.Gui;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AdminVerif extends JFrame{
 
-    public AdminVerif(){
+    public AdminVerif(JFrame window){
 
-        JFrame af = new JFrame("Verification");
+        JFrame af = this;
 
         JLabel l2 = new JLabel("Password:");
         l2.setBounds(20, 75, 80, 10);
@@ -26,6 +28,8 @@ public class AdminVerif extends JFrame{
             public void actionPerformed(ActionEvent e) {
 
                 AdminMenu am = new AdminMenu();
+                af.dispose();
+                window.dispose();
 
             }
         });

@@ -36,6 +36,8 @@ public class Login extends JFrame {
         b.setBounds(100, 120, 80, 30);
         this.text = new JTextField();
         text.setBounds(100, 20, 100, 30);
+
+
         signup.add(value);
         signup.add(l1);
         signup.add(label);

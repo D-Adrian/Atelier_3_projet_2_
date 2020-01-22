@@ -161,6 +161,10 @@ public class AccountCreation extends JFrame {
                 request.signupRequest(nom.getText(), prenom.getText(), mail.getText(),password.getText(),numero.getText(),adresse.getText(),postal.getText(),siege.getText(),distance.getText());
 
 
+                PopupCreation pc = new PopupCreation();
+
+                acc.dispose();
+
                 }
         });
     }

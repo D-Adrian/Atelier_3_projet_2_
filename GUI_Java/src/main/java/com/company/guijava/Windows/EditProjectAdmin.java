@@ -2,51 +2,45 @@ package com.company.guijava.Windows;
 
 import com.company.guijava.ModeleStatic;
 import com.company.guijava.RequestSQL.Request;
-import com.company.guijava.TableProject;
+import com.company.guijava.TableProduct;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dashboard extends JFrame {
-
-    String[] header = {"nom du projet", "date de création", "description du projet", "date de fin"};
+public class EditProjectAdmin extends JFrame {
+    String[] header = {"nom du produit", "date d'ajout"};
     ModeleStatic model = new ModeleStatic(header);
-    TableProject boat;
+    TableProduct door;
     ArrayList<String> arrivalInfo = new ArrayList<String>();
 
     Request requestsSQL = new Request();
     JPanel panelTab = new JPanel();
 
-    public Dashboard() {
+    public EditProjectAdmin() {
 
-        JFrame uw = new JFrame("Dashboard");
-        this.setTitle("Dashboard");
+        JFrame uw = new JFrame("Product List");
+        this.setTitle("Product List");
 
         JPanel buttonPan = new JPanel();
 
 
-        JButton b = new JButton("New Project");
-        JButton c = new JButton("Edit Project");
-        JButton d = new JButton("End a Project");
-        JButton e = new JButton("Product List");
+        JButton b = new JButton("Add Product");
+        JButton d = new JButton("Delete Product");
 
 
         this.setSize(600, 600);
         this.setLocationRelativeTo(null);
         //this.setLayout(null);
         buttonPan.add(b);
-        buttonPan.add(c);
         buttonPan.add(d);
-        buttonPan.add(e);
+
 
 
         List<String> values;
         try {
-            values = this.requestsSQL.DisplayProject();
+            values = this.requestsSQL.DisplayProduct();
             if (!values.isEmpty()) {
                 int i = 0;
 
@@ -54,15 +48,14 @@ public class Dashboard extends JFrame {
                     this.arrivalInfo.add(infoArrive);
                     i++;
                     if (i == this.header.length) {
-                        this.model.addInformation(new TableProject(this.arrivalInfo.get(0), this.arrivalInfo.get(1), this.arrivalInfo.get(2),
-                                this.arrivalInfo.get(3)));
+                        this.model.addInformation(new TableProduct(this.arrivalInfo.get(0), this.arrivalInfo.get(1)));
                         this.arrivalInfo.clear();
                         i = 0;
                     }
                 }
 
             }
-            else { this.boat = new TableProject(" ", " ", " ", " ");}
+            else { this.door = new TableProduct(" ", " ");}
         } catch (Exception i) {
             System.out.println(i);
         }
@@ -73,22 +66,6 @@ public class Dashboard extends JFrame {
         this.add(panelTab, BorderLayout.CENTER);
         this.add(buttonPan, BorderLayout.SOUTH);
 
-
-        e.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                EditProjectAdmin ep = new EditProjectAdmin();
-
-            }
-        });
-
         this.setVisible(true);
     }
 }
-
-
-
-
-
-

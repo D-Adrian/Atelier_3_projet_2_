@@ -30,8 +30,7 @@ public class UserWindow extends JFrame {
 
 
         JButton b = new JButton("New Project");
-        JButton c = new JButton("Edit Project");
-        JButton d = new JButton("End a Project");
+        JButton c = new JButton("Edit my Project");
         JButton e = new JButton("Product List");
 
 
@@ -40,7 +39,6 @@ public class UserWindow extends JFrame {
         //this.setLayout(null);
         buttonPan.add(b);
         buttonPan.add(c);
-        buttonPan.add(d);
         buttonPan.add(e);
 
 
@@ -74,11 +72,12 @@ public class UserWindow extends JFrame {
         this.add(buttonPan, BorderLayout.SOUTH);
 
 
+
         e.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                EditProject ep = new EditProject();
+                EditProjectUser ep = new EditProjectUser();
 
             }
         });
