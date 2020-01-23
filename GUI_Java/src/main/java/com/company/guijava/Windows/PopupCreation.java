@@ -9,7 +9,7 @@ public class PopupCreation extends JFrame {
     public PopupCreation() {
 
         int TIME_VISIBLE = 3000;
-        
+
 
         JLabel jp = new JLabel();
         jp.setText(" Compte crée avec Succès ! ");

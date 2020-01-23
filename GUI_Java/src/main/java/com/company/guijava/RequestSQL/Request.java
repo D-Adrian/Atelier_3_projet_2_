@@ -1,6 +1,7 @@
 package com.company.guijava.RequestSQL;
 
 import com.company.guijava.Connexion;
+import com.company.guijava.Save.JSonReader;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,9 +19,9 @@ public class Request {
 
 
 
-    public boolean loginRequest(String mail, String password) {
+    public List<String> loginRequest(String mail, String password) {
 
-        String loginR = "SELECT email,mot_de_passe FROM utilisateur WHERE email = ? AND mot_de_passe = ?";
+        String loginR = "SELECT email,mot_de_passe, id FROM utilisateur WHERE email = ? AND mot_de_passe = ?";
 
 
         try {
@@ -37,20 +38,21 @@ public class Request {
             else {
                 System.out.println("pas dans la base");
             }
-            return !values.isEmpty();
+            return values;
 
 
         }
         catch(Exception e){
-            return false;
+            return null;
         }
     }
 
 
     public void signupRequest(String nom, String prenom, String email, String mot_de_passe, String numero_portable, String adresse_postale, String code_postale, String siege_le_plus_proche, String distance_estime) {
 
-        String signupR = "INSERT INTO utilisateur (nom,prenom,email,mot_de_passe,numero_portable,adresse_postale,code_postale,siege_le_plus_proche,distance_estime, role_utilisateur) " +
-                "VALUES ('?','?','?','?','?','?','?','?','?','?')";
+        String signupR = "INSERT INTO utilisateur (nom,prenom,email, mot_de_passe,numero_portable,adresse_postale, code_postale,siege_le_plus_proche,distance_estime) " +
+                "VALUES (?,?,?,?,?,?,?,?,?)";
+        //voir avec un replace into
 
         try {
             prep1 = connexion.connect().prepareStatement(signupR);
@@ -63,8 +65,7 @@ public class Request {
             prep1.setString(7, code_postale);
             prep1.setString(8, siege_le_plus_proche);
             prep1.setString(9, distance_estime);
-            prep1.setString(10, "utilisateur");
-            System.out.println("try insert "+ nom);
+
 
             prep1.executeUpdate();
             prep1.close();
@@ -80,9 +81,32 @@ public class Request {
 
 
     public List<String> DisplayProject() {
+        JSonReader register = new JSonReader();
+        List<String> loginRegister = register.readFileLoginSession("src/main/java/com/company/guijava/userSession.json");
 
         String displayP = "SELECT nom_projet,date_creation,description_projet,date_fin \n" +
-                "FROM projet \n" +
+                "FROM projet WHERE id_utilisateur=? " +
+                "ORDER BY date_creation ASC";
+        try {
+            prep1 = connexion.connect().prepareStatement(displayP, ResultSet.TYPE_SCROLL_SENSITIVE);
+            prep1.setString(1, loginRegister.get(2));
+            ResultSet result = prep1.executeQuery();
+            List<String> values = request.seeRequest(result);
+            prep1.close();
+
+            return values;
+
+
+        }
+        catch(Exception e){
+            return null;
+        }
+    }
+
+    public List<String> DisplayProjectAdmin() {
+
+        String displayP = "SELECT nom_projet,date_creation,description_projet,date_fin \n" +
+                "FROM projet" +
                 "ORDER BY date_creation ASC";
         try {
             prep1 = connexion.connect().prepareStatement(displayP, ResultSet.TYPE_SCROLL_SENSITIVE);
@@ -98,7 +122,6 @@ public class Request {
             return null;
         }
     }
-
 
 
     public List<String> DisplayProduct() {
@@ -178,6 +201,7 @@ public class Request {
             return null;
         }
     }
+
 
 
 }

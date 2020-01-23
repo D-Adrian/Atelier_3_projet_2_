@@ -25,7 +25,7 @@ public class AdminMenu extends JFrame {
         setJMenuBar(menuBar);
 
 
-        Panel pan = new Panel("imgs/Leroy_Merlu.png");
+        com.company.guijava.Panel pan = new com.company.guijava.Panel("imgs/Leroy_Merlu.png");
         pan.setVisible(true);
 
         this.setSize(600, 600);

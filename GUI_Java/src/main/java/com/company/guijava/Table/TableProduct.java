@@ -1,5 +1,7 @@
-package com.company.guijava;
+package com.company.guijava.Table;
 
+
+import com.company.guijava.ITable;
 
 import java.util.ArrayList;
 import java.util.List;

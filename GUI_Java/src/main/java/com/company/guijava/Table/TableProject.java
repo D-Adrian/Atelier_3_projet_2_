@@ -1,5 +1,7 @@
-package com.company.guijava;
+package com.company.guijava.Table;
 
+
+import com.company.guijava.ITable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,19 +10,23 @@ import java.util.List;
  * This class is used to create a line of a table containing information about a cargo, like project name, creation date,
  * project description, end date
  */
-public class TableGain implements ITable {
+public class TableProject implements ITable {
     private List<String> listValues = new ArrayList<>();
 
     /**
      *  TableProject constructor, used to set all the column values of our table
-     * @param mois project name
-     * @param gain creation date
+     * @param nom_projet project name
+     * @param date_creation creation date
+     * @param description_projet project description
+     * @param date_fin end date
      */
-    public TableGain(String mois, String gain) {
+    public TableProject(String nom_projet, String date_creation, String description_projet, String date_fin) {
         super();
 
-        this.listValues.add(mois);
-        this.listValues.add(gain);
+        this.listValues.add(nom_projet);
+        this.listValues.add(date_creation);
+        this.listValues.add(description_projet);
+        this.listValues.add(date_fin);
     }
 
     /**

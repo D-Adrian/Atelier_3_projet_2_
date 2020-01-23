@@ -1,17 +1,27 @@
 package com.company.guijava.Windows;
 
 import com.company.guijava.RequestSQL.Request;
+import com.company.guijava.Save.JSonReader;
+import com.company.guijava.Save.JsonWriterLogin;
+import com.company.guijava.Save.StateListener;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 public class Login extends JFrame {
 
     boolean isInDatabase;
     JTextField text = new JTextField();
-
-    JTextField value = new JTextField();
+    JTextField value = new JPasswordField();
 
     public String getValue() {
         return value.getText();
@@ -23,31 +33,73 @@ public class Login extends JFrame {
 
     public Login() {
 
-        JFrame signup = new JFrame("Connexion");
-        final JLabel label = new JLabel();
-        label.setBounds(20, 150, 200, 50);
+
+
+        JFrame login = this;
+
+        BufferedImage img = null;
+        try{
+            img = ImageIO.read(new File("imgs/Leroy_Merlu.png"));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Image dimg = img.getScaledInstance(200,200,Image.SCALE_SMOOTH);
+        ImageIcon imageIcon = new ImageIcon(dimg);
+        JLabel labelimage = new JLabel(imageIcon);
+
+
+
+        JLabel label = new JLabel();
+        label.setBounds(20, 150, 100, 50);
         this.value = new JPasswordField();
-        value.setBounds(100, 75, 100, 30);
+        value.setBounds(160, 275, 180, 30);
+        JCheckBox cb = new JCheckBox();
+        cb.setBounds(13, 440, 20, 30);
+        cb.setLayout(new BorderLayout());
+        Border margin = new EmptyBorder(10, 2, 4, 10);
+        cb.setBorder(margin);
+        cb.addActionListener(new StateListener());
+        try{
+            JSonReader register = new JSonReader();
+            List<String> loginRegister = register.readFileLoginRegister("src/main/java/com/company/guijava/userRegister.json");
+            value.setText(loginRegister.get(0));
+            text.setText(loginRegister.get(1));
+            cb.setSelected(true);
+
+        }catch (Exception e){
+
+        }
+        text.setBounds(160, 220, 180, 30);
         JLabel l1 = new JLabel("Mail:");
-        l1.setBounds(20, 20, 80, 30);
+        l1.setBounds(30, 220, 80, 30);
         JLabel l2 = new JLabel("Password:");
-        l2.setBounds(20, 75, 80, 30);
+        l2.setBounds(30, 275, 80, 30);
         JButton b = new JButton("Login");
-        b.setBounds(100, 120, 80, 30);
-        this.text = new JTextField();
-        text.setBounds(100, 20, 100, 30);
+        b.setBounds(210, 330, 80, 30);
+        JButton f = new JButton("Register");
+        f.setBounds(200, 360, 100, 30);
 
 
-        signup.add(value);
-        signup.add(l1);
-        signup.add(label);
-        signup.add(l2);
-        signup.add(b);
-        signup.add(text);
-        signup.setSize(250, 210);
-        signup.setResizable(false);
-        signup.setLayout(null);
-        signup.setVisible(true);
+        JLabel jb = new JLabel("Keep me logged in");
+        jb.setBounds(36, 443, 120, 28);
+
+
+        this.setSize(500, 500);
+        this.setResizable(false);
+        this.setVisible(true);
+        this.add(value);
+        this.add(l1);
+        this.add(label);
+        this.add(l2);
+        this.add(b);
+        this.add(f);
+        this.add(text);
+        this.add(cb);
+        this.add(jb);
+        this.add(labelimage);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Permet de fermer le processus avec la croix rouge
+
         /*
         com.company.guijava.Connexion co = new com.company.guijava.Connexion();
         b.addActionListener(new ActionListener() {
@@ -55,18 +107,20 @@ public class Login extends JFrame {
                 co.connect(getText(),getValue());
             }
         });*/
-        JPanel pannel = new JPanel();
-        JLabel jLabel1 =new JLabel("Mon texte dans JLabel");
-        pannel.add(jLabel1);
 
-        ImageIcon icon = new ImageIcon("GUI_Java/imgs/database-icon.png");
-        JLabel logo = new JLabel("", icon, JLabel.CENTER);
-        signup.add(logo);
+        this.setLocationRelativeTo(null); // Affiche la fenetre au centre de l'écran
+        this.setVisible(true);
 
-        signup.getContentPane().add(pannel);
-        signup.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        signup.setLocationRelativeTo(null); // Affiche la fenetre au centre de l'écran
-        signup.setVisible(true);
+
+        f.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE D'INSCRIPTION
+
+                AccountCreation acc = new AccountCreation();
+            }
+        });
+
+
 
 
         Request request = new Request();
@@ -74,18 +128,34 @@ public class Login extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                UserWindow uw = new UserWindow();
-                    signup.dispose();
+                String mail = text.getText();
+                String password = value.getText();
 
-                /*boolean isIndatabase =request.loginRequest(getText(), getValue());
-                if (isIndatabase){
+                List<String> values =request.loginRequest(getText(), getValue());
+                if (!values.isEmpty()){
+                    if (cb.isSelected()) {
+                        System.out.println(mail + password);
+                        try {
+                            new JsonWriterLogin().writeInFileRegister(mail, password, "src/main/java/com/company/guijava/userRegister.json");
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+
+                    try {
+                        new JsonWriterLogin().writeInFileSession(mail, password, values.get(2),  "src/main/java/com/company/guijava/userSession.json");
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
                     System.out.println("in database");    // A REMETTRE QUAND LA BDD EST ON
-                    UserWindow uw = new UserWindow();*/
+                    Gui g = new Gui();
+                    login.dispose();
                 }
-            });
-        }
-
+            }
+        });
     }
+
+}
 
 
 

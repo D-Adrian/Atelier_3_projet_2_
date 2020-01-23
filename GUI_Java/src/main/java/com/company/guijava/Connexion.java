@@ -10,7 +10,7 @@ public class Connexion {
         {
             try {
                 //Connection connection =DriverManager.getConnection("jdbc:mysql://192.168.64.2/BaseDeDonnee", "Eddy" , "shayze7895");
-                Connection connection =DriverManager.getConnection("jdbc:mysql://172.20.10.7:3306/BaseDeDonnee", "Eddy" , "shayze7895");
+                Connection connection =DriverManager.getConnection("jdbc:mysql://10.0.3.158:3306/BaseDeDonnee", "Eddy" , "shayze7895");
 
                 System.out.println("Connected to Database");
                 return connection;

@@ -2,7 +2,7 @@ package com.company.guijava.Windows;
 
 import com.company.guijava.ModeleStatic;
 import com.company.guijava.RequestSQL.Request;
-import com.company.guijava.TableProject;
+import com.company.guijava.Table.TableProject;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,5 +1,7 @@
 package com.company.guijava.Windows;
 
+import com.company.guijava.Save.JsonWriterLogin;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -8,8 +10,16 @@ import java.awt.event.*;
 public class Gui extends JFrame {
 
     public Gui() {
+        super();
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                JsonWriterLogin writer = new JsonWriterLogin();
+                writer.writeInFileSession("", "", "", "src/main/java/com/company/guijava/userSession.json");
+                System.exit(0);
+            }
+        });
 
-        JFrame window = new JFrame("Leroy Merlu");
+        JFrame window = this;
         window.setSize(800, 500);
         window.setLocationRelativeTo(null);
 
@@ -17,24 +27,26 @@ public class Gui extends JFrame {
         menuBar.setOpaque(true);
         menuBar.setBackground(Color.blue); // NON FONCTIONNEL SUR MacOS
         window.setJMenuBar(menuBar);
+        this.setTitle("Leroy Merlu | Main Menu");
 
         JMenu menu = new JMenu("Menu");
-        //menu.add("SignUp");
-        menu.add("| Signup").addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE D'INSCRIPTION
 
-                AccountCreation acc = new AccountCreation();
+
+        menu.add("| Disconnect").addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { // DECONNEXION
+
             }
         });
 
-        menu.add("| Login").addActionListener(new ActionListener() {
+        menu.add("| Dashboard").addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE DE CONNEXION
+            public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE DE VERIF
 
-                Login login = new Login();
+                UserWindow uw = new UserWindow();
             }
         });
+
 
         menu.add("| Admin").addActionListener(new ActionListener() {
             @Override
@@ -67,10 +79,7 @@ public class Gui extends JFrame {
         JLabel logo = new JLabel("", icon, JLabel.CENTER);
         window.add(logo);
 
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Permet de fermer le processus avec la croix rouge
         window.setVisible(true);
-
-        Login login = new Login();
 
     }
 }

@@ -2,7 +2,7 @@ package com.company.guijava.Windows;
 
 import com.company.guijava.ModeleStatic;
 import com.company.guijava.RequestSQL.Request;
-import com.company.guijava.TableProject;
+import com.company.guijava.Table.TableProject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +15,7 @@ public class Dashboard extends JFrame {
 
     String[] header = {"nom du projet", "date de création", "description du projet", "date de fin"};
     ModeleStatic model = new ModeleStatic(header);
-    TableProject boat;
+    TableProject door;
     ArrayList<String> arrivalInfo = new ArrayList<String>();
 
     Request requestsSQL = new Request();
@@ -46,7 +46,7 @@ public class Dashboard extends JFrame {
 
         List<String> values;
         try {
-            values = this.requestsSQL.DisplayProject();
+            values = this.requestsSQL.DisplayProjectAdmin();
             if (!values.isEmpty()) {
                 int i = 0;
 
@@ -62,7 +62,7 @@ public class Dashboard extends JFrame {
                 }
 
             }
-            else { this.boat = new TableProject(" ", " ", " ", " ");}
+            else { this.door = new TableProject(" ", " ", " ", " ");}
         } catch (Exception i) {
             System.out.println(i);
         }

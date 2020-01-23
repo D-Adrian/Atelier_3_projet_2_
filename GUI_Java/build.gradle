@@ -14,6 +14,8 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     implementation 'mysql:mysql-connector-java:8.0.18'
+    implementation 'org.apache.felix:org.apache.felix.webconsole:1.0.0'
+    implementation 'com.lowagie:itext:4.2.1'
     compile group: 'com.apple', name: 'AppleJavaExtensions', version: '1.4'
 }
 
