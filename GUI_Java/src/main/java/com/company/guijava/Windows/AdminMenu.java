@@ -46,7 +46,16 @@ public class AdminMenu extends JFrame {
 
         JMenu menu = new JMenu("Admin");
 
-        menu.add("| Previous").addActionListener(new ActionListener() {
+        menu.add("| Disconnect").addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { // DECONNEXION
+
+                new Login();
+                window.dispose();
+            }
+        });
+
+        menu.add("| User Menu").addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE D'INSCRIPTION
 
@@ -87,6 +96,7 @@ public class AdminMenu extends JFrame {
         ImageIcon icon = new ImageIcon("imgs/admin-logo-png-5.png");
         JLabel logo = new JLabel("", icon, JLabel.CENTER);
         this.add(logo);
+        this.setTitle("Leroy Merlu | Admin Menu");
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Permet de fermer le processus avec la croix rouge
         this.setVisible(true);

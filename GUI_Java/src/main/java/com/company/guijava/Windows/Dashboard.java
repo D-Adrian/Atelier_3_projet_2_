@@ -2,6 +2,7 @@ package com.company.guijava.Windows;
 
 import com.company.guijava.ModeleStatic;
 import com.company.guijava.RequestSQL.Request;
+import com.company.guijava.Save.JSonReader;
 import com.company.guijava.Table.TableProject;
 
 import javax.swing.*;
@@ -28,12 +29,12 @@ public class Dashboard extends JFrame {
 
         JPanel buttonPan = new JPanel();
 
-
         JButton b = new JButton("New Project");
         JButton c = new JButton("Edit Project");
         JButton d = new JButton("End a Project");
         JButton e = new JButton("Product List");
 
+        b.addActionListener(e1 -> new AddNewProject());
 
         this.setSize(600, 600);
         this.setLocationRelativeTo(null);
@@ -46,7 +47,16 @@ public class Dashboard extends JFrame {
 
         List<String> values;
         try {
-            values = this.requestsSQL.DisplayProjectAdmin();
+            List<String> userSession = new JSonReader().readFileLoginSession("src/main/java/com/company/guijava/userSession.json");
+            if(userSession.get(3).toLowerCase().equals("admin")){
+                values = this.requestsSQL.DisplayProjectAdmin();
+            }
+            else if(userSession.get(3).toLowerCase().equals("utilisateur")){
+                values = this.requestsSQL.DisplayProject();
+            }
+            else{
+                values=new ArrayList<>();
+            }
             if (!values.isEmpty()) {
                 int i = 0;
 
@@ -78,7 +88,7 @@ public class Dashboard extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                EditProjectAdmin ep = new EditProjectAdmin();
+                ProductListAdmin ep = new ProductListAdmin();
 
             }
         });

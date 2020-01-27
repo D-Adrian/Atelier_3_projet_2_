@@ -9,8 +9,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditProjectAdmin extends JFrame {
-    String[] header = {"nom du produit", "date d'ajout"};
+public class ProductListUser extends JFrame {
+    String[] header = {"Mois", "Gain"};
     ModeleStatic model = new ModeleStatic(header);
     TableProduct door;
     ArrayList<String> arrivalInfo = new ArrayList<String>();
@@ -18,25 +18,15 @@ public class EditProjectAdmin extends JFrame {
     Request requestsSQL = new Request();
     JPanel panelTab = new JPanel();
 
-    public EditProjectAdmin() {
+    public ProductListUser() {
 
         JFrame uw = new JFrame("Product List");
         this.setTitle("Product List");
-
-        JPanel buttonPan = new JPanel();
-
-
-        JButton b = new JButton("Add Product");
-        JButton d = new JButton("Delete Product");
 
 
         this.setSize(600, 600);
         this.setLocationRelativeTo(null);
         //this.setLayout(null);
-        buttonPan.add(b);
-        buttonPan.add(d);
-
-
 
         List<String> values;
         try {
@@ -55,7 +45,7 @@ public class EditProjectAdmin extends JFrame {
                 }
 
             }
-            else { this.door = new TableProduct(" ", " ");}
+            else { this.door = new TableProduct(" ", "");}
         } catch (Exception i) {
             System.out.println(i);
         }
@@ -64,7 +54,6 @@ public class EditProjectAdmin extends JFrame {
         JTable tableau = new JTable(this.model);
         this.panelTab.add(new JScrollPane(tableau), BorderLayout.CENTER);
         this.add(panelTab, BorderLayout.CENTER);
-        this.add(buttonPan, BorderLayout.SOUTH);
 
         this.setVisible(true);
     }

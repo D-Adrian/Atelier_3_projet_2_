@@ -1,10 +1,13 @@
 package com.company.guijava.Windows;
 
+import com.company.guijava.Save.JSonReader;
 import com.company.guijava.Save.JsonWriterLogin;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Gui extends JFrame {
@@ -14,7 +17,7 @@ public class Gui extends JFrame {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 JsonWriterLogin writer = new JsonWriterLogin();
-                writer.writeInFileSession("", "", "", "src/main/java/com/company/guijava/userSession.json");
+                writer.writeInFileSession("", "", "", "", "src/main/java/com/company/guijava/userSession.json");
                 System.exit(0);
             }
         });
@@ -36,23 +39,33 @@ public class Gui extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) { // DECONNEXION
 
+                Login l = new Login();
+                window.dispose();
             }
         });
+
+        try{
+            //lecture json session
+            //recupere les droits (user ou admin)
+            List<String> userSession = new JSonReader().readFileLoginSession("src/main/java/com/company/guijava/userSession.json");
+            if(userSession.get(3).toLowerCase().equals("admin")) {
+                menu.add("| Admin Menu").addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                        new AdminMenu();
+                        window.dispose();
+                    }
+                });
+            }
+        }catch (Exception e){
+        }
 
         menu.add("| Dashboard").addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE DE VERIF
-
+                //Dashboard db = new Dashboard();
                 UserWindow uw = new UserWindow();
-            }
-        });
-
-
-        menu.add("| Admin").addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE DE VERIF
-
-                AdminVerif af = new AdminVerif(window);
             }
         });
 
@@ -66,11 +79,6 @@ public class Gui extends JFrame {
         });
 
         menuBar.add(menu);
-
-
-        //JPanel panneau = new JPanel();
-        //panneau.add(bouton);
-        //setContentPane(panneau);
 
         Image icon1 = new javax.swing.ImageIcon("imgs/ez.png").getImage();
         window.setIconImage(icon1);

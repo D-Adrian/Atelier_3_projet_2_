@@ -13,21 +13,5 @@ public class App {
         Connexion connexion = new Connexion();
         Login lg = new Login();
 
-
-/*
-        System.out.println("try ");
-        String request = "SELECT * FROM client";
-        try {
-            Statement statement = connexion.connect().createStatement(); ResultSet results = statement.executeQuery(request);
-        } catch (SQLException e) {
-            //traitement de l'exception
-        }
-
- */
-
-
-
-
-
     }
 }

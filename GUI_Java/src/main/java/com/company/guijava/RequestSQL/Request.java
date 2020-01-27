@@ -9,20 +9,17 @@ import java.util.List;
 
 public class Request {
 
-        // CHAQUE REQUETE, MET LES DANS DES METHODES DIFFERENTES
+    // CHAQUE REQUETE, MET LES DANS DES METHODES DIFFERENTES
 
 
     private Connexion connexion = new Connexion();
-    private RequestReader request =new RequestReader();
+    private RequestReader request = new RequestReader();
     private PreparedStatement prep1 = null;
-
-
 
 
     public List<String> loginRequest(String mail, String password) {
 
-        String loginR = "SELECT email,mot_de_passe, id FROM utilisateur WHERE email = ? AND mot_de_passe = ?";
-
+        String loginR = "SELECT email,mot_de_passe, id, role_utilisateur FROM utilisateur WHERE email = ? AND mot_de_passe = ?";
 
         try {
             prep1 = connexion.connect().prepareStatement(loginR, ResultSet.TYPE_SCROLL_SENSITIVE);
@@ -32,17 +29,15 @@ public class Request {
             List<String> values = request.seeRequest(result);
             prep1.close();
 
-            if(!values.isEmpty()){
+            if (!values.isEmpty()) {
                 System.out.println("dans la base");
-            }
-            else {
+            } else {
                 System.out.println("pas dans la base");
             }
             return values;
 
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
@@ -69,15 +64,13 @@ public class Request {
 
             prep1.executeUpdate();
             prep1.close();
-            System.out.println("insert "+ nom);
+            System.out.println("insert " + nom);
 
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("not insert");
         }
 
     }
-
 
 
     public List<String> DisplayProject() {
@@ -97,8 +90,7 @@ public class Request {
             return values;
 
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
@@ -106,19 +98,19 @@ public class Request {
     public List<String> DisplayProjectAdmin() {
 
         String displayP = "SELECT nom_projet,date_creation,description_projet,date_fin \n" +
-                "FROM projet" +
-                "ORDER BY date_creation ASC";
+                " FROM projet " +
+                " ORDER BY date_creation ASC";
         try {
             prep1 = connexion.connect().prepareStatement(displayP, ResultSet.TYPE_SCROLL_SENSITIVE);
-            ResultSet result = prep1.executeQuery();
+            ResultSet result = prep1.executeQuery();/////////
             List<String> values = request.seeRequest(result);
             prep1.close();
 
+            System.out.println(values);
             return values;
 
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
@@ -138,13 +130,12 @@ public class Request {
             return values;
 
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
 
-    public List<String> favoriteColor(){
+    public List<String> favoriteColor() {
         String requestColor = " SELECT count(couleur_module) as nombre_couleur,couleur_module\n" +
                 "        FROM personnalisation_porte\n" +
                 "        GROUP BY couleur_module\n" +
@@ -158,14 +149,13 @@ public class Request {
 
             return values;
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
 
     }
 
-    public List<String> nbProject(){
+    public List<String> nbProject() {
         String requestProject = "SELECT count(tab.id) from (SELECT DISTINCT id_projet as id FROM produit_projet) as tab";
         try {
             prep1 = connexion.connect().prepareStatement(requestProject, ResultSet.TYPE_SCROLL_SENSITIVE);
@@ -175,13 +165,12 @@ public class Request {
 
             return values;
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
 
-    public List<String> gainTotal(){
+    public List<String> gainTotal() {
         String requestProject = "SELECT  month(projet.date_fin) as mois, (sum(prix_ht)) as total\n" +
                 "FROM produit_projet\n" +
                 "LEFT JOIN projet ON projet.id = produit_projet.id_projet \n" +
@@ -196,12 +185,34 @@ public class Request {
 
             return values;
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
 
+    public void newProject(String name_project, String desc_project) {
+
+        JSonReader register = new JSonReader();
+        List<String> newProject = register.readFileLoginSession("src/main/java/com/company/guijava/userSession.json");
+
+        String requestnewProject = "INSERT INTO projet (nom_projet,description_projet,id_utilisateur) " +
+                "VALUES (?,?,?)";
+
+        try {
+            prep1 = connexion.connect().prepareStatement(requestnewProject);
+            prep1.setString(1, name_project);
+            prep1.setString(2, desc_project);
+            prep1.setString(3, newProject.get(2));
+
+            prep1.executeUpdate();
+            prep1.close();
+            System.out.println("insert " + name_project + desc_project);
+
+        } catch (Exception e) {
+            System.out.println("not insert");
+        }
 
 
+
+    }
 }

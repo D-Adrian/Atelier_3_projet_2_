@@ -73,11 +73,21 @@ public class UserWindow extends JFrame {
 
 
 
+
+        b.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                new AddNewProject();
+
+            }
+        });
+
         e.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                EditProjectUser ep = new EditProjectUser();
+                ProductListUser ep = new ProductListUser();
 
             }
         });

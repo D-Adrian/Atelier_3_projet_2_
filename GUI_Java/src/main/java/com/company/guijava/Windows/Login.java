@@ -33,8 +33,6 @@ public class Login extends JFrame {
 
     public Login() {
 
-
-
         JFrame login = this;
 
         BufferedImage img = null;
@@ -46,14 +44,15 @@ public class Login extends JFrame {
         }
         Image dimg = img.getScaledInstance(200,200,Image.SCALE_SMOOTH);
         ImageIcon imageIcon = new ImageIcon(dimg);
+        JPanel panImg= new JPanel(new GridLayout(2, 1));
         JLabel labelimage = new JLabel(imageIcon);
-
-
+        panImg.add(labelimage);
+        panImg.setOpaque(false);
 
         JLabel label = new JLabel();
         label.setBounds(20, 150, 100, 50);
         this.value = new JPasswordField();
-        value.setBounds(160, 275, 180, 30);
+        value.setBounds(160, 285, 180, 30);
         JCheckBox cb = new JCheckBox();
         cb.setBounds(13, 440, 20, 30);
         cb.setLayout(new BorderLayout());
@@ -70,15 +69,15 @@ public class Login extends JFrame {
         }catch (Exception e){
 
         }
-        text.setBounds(160, 220, 180, 30);
+        text.setBounds(160, 240, 180, 30);
         JLabel l1 = new JLabel("Mail:");
-        l1.setBounds(30, 220, 80, 30);
+        l1.setBounds(30, 243, 80, 30);
         JLabel l2 = new JLabel("Password:");
-        l2.setBounds(30, 275, 80, 30);
+        l2.setBounds(30, 288, 80, 30);
         JButton b = new JButton("Login");
-        b.setBounds(210, 330, 80, 30);
+        b.setBounds(210, 340, 80, 30);
         JButton f = new JButton("Register");
-        f.setBounds(200, 360, 100, 30);
+        f.setBounds(200, 370, 100, 30);
 
 
         JLabel jb = new JLabel("Keep me logged in");
@@ -97,7 +96,7 @@ public class Login extends JFrame {
         this.add(text);
         this.add(cb);
         this.add(jb);
-        this.add(labelimage);
+        this.add(panImg);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Permet de fermer le processus avec la croix rouge
 
         /*
@@ -120,9 +119,6 @@ public class Login extends JFrame {
             }
         });
 
-
-
-
         Request request = new Request();
         b.addActionListener(new ActionListener() {
             @Override
@@ -143,13 +139,23 @@ public class Login extends JFrame {
                     }
 
                     try {
-                        new JsonWriterLogin().writeInFileSession(mail, password, values.get(2),  "src/main/java/com/company/guijava/userSession.json");
+                        new JsonWriterLogin().writeInFileSession(mail, password, values.get(2), values.get(3), "src/main/java/com/company/guijava/userSession.json");
+                        List<String> userSession = new JSonReader().readFileLoginSession("src/main/java/com/company/guijava/userSession.json");
+                        if (userSession.get(3).toLowerCase().equals("utilisateur")){
+                            new Gui();
+                            login.dispose();
+                        }
+                        else if(userSession.get(3).toLowerCase().equals("admin")){
+                            new AdminMenu();
+                            login.dispose();
+                        }
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
                     System.out.println("in database");    // A REMETTRE QUAND LA BDD EST ON
-                    Gui g = new Gui();
-                    login.dispose();
+                }
+                else {
+                        new PopupErrorConnexion();
                 }
             }
         });

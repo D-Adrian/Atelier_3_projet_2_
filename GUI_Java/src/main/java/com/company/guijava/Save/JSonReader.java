@@ -116,9 +116,11 @@ public class JSonReader {
             String mail = objet.getString("mail");
             String password = objet.getString("password");
             String id = objet.getString("id");
+            String droit = objet.getString("droit");
             loginInfo.add(password);
             loginInfo.add(mail);
             loginInfo.add(id);
+            loginInfo.add(droit);
             return loginInfo;
         }catch(Exception e){
             System.out.println(e);

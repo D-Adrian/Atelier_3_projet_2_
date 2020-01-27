@@ -80,8 +80,6 @@ public class AccountCreation extends JFrame {
         JLabel l9 = new JLabel("distance estime (en km) :");
         l9.setBounds(20, 460, 175, 30);
 
-
-
         /** AJOUTE LE CHOIX PAR BOUTON (NON FONCTIONNEL) */
 
         Button but = new Button();
@@ -123,7 +121,6 @@ public class AccountCreation extends JFrame {
         //acc.add(l10);
 
         acc.add(b); // AJOUT DU BOUTON "b" SUR LA FENETRE "acc"
-
 
         acc.setSize(600, 700); // permet de définir les dimensions
         acc.setLocationRelativeTo(null); // Affiche la fenetre au centre de l'écran
