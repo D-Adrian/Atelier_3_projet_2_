@@ -5,6 +5,10 @@ import com.company.guijava.Save.JSonReader;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.sql.Date;
 import java.util.List;
 
 public class Request {
@@ -73,11 +77,41 @@ public class Request {
     }
 
 
+    public List<String> listOfProduct() {
+        String displayP = "SELECT nom_produit FROM produit ";
+        try {
+            prep1 = connexion.connect().prepareStatement(displayP, ResultSet.TYPE_SCROLL_SENSITIVE);
+            ResultSet result = prep1.executeQuery();
+            List<String> values = request.seeRequest(result);
+            prep1.close();
+            return values;
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public List<String> listOfMaterial() {
+        String displayP = "SELECT nom_materiau FROM materiau ";
+        try {
+            prep1 = connexion.connect().prepareStatement(displayP, ResultSet.TYPE_SCROLL_SENSITIVE);
+            ResultSet result = prep1.executeQuery();
+            List<String> values = request.seeRequest(result);
+            prep1.close();
+            return values;
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
+
     public List<String> DisplayProject() {
         JSonReader register = new JSonReader();
         List<String> loginRegister = register.readFileLoginSession("src/main/java/com/company/guijava/userSession.json");
 
-        String displayP = "SELECT nom_projet,date_creation,description_projet,date_fin \n" +
+        String displayP = "SELECT id, nom_projet,date_creation,description_projet,date_fin \n" +
                 "FROM projet WHERE id_utilisateur=? " +
                 "ORDER BY date_creation ASC";
         try {
@@ -95,9 +129,33 @@ public class Request {
         }
     }
 
+    public List<String> DisplayProjectToEdit(String id_project) {
+        JSonReader register = new JSonReader();
+        List<String> loginRegister = register.readFileLoginSession("src/main/java/com/company/guijava/userSession.json");
+
+        String displayP = "SELECT nom_projet,description_projet \n" +
+                "FROM projet WHERE id_utilisateur=? AND id=? " +
+                "ORDER BY date_creation ASC";
+        try {
+            prep1 = connexion.connect().prepareStatement(displayP, ResultSet.TYPE_SCROLL_SENSITIVE);
+            prep1.setString(1, loginRegister.get(2));
+            prep1.setString(2, id_project);
+            ResultSet result = prep1.executeQuery();
+            List<String> values = request.seeRequest(result);
+            prep1.close();
+
+            return values;
+
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
     public List<String> DisplayProjectAdmin() {
 
-        String displayP = "SELECT nom_projet,date_creation,description_projet,date_fin \n" +
+        String displayP = "SELECT id, nom_projet,date_creation,description_projet,date_fin \n" +
                 " FROM projet " +
                 " ORDER BY date_creation ASC";
         try {
@@ -134,6 +192,27 @@ public class Request {
             return null;
         }
     }
+
+    public List<String> DisplayDetails(String idProject) {
+
+        String displayP = "SELECT id_projet, id_produit, largeur_totale, longueur_totale, epaisseur_totale, prix_ht, tva " +
+                "FROM produit_projet WHERE id_projet=? " +
+                "ORDER BY id_projet ASC";
+        try {
+            prep1 = connexion.connect().prepareStatement(displayP, ResultSet.TYPE_SCROLL_SENSITIVE);
+            prep1.setString(1, idProject);
+            ResultSet result = prep1.executeQuery();
+            List<String> values = request.seeRequest(result);
+            prep1.close();
+
+            return values;
+
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 
     public List<String> favoriteColor() {
         String requestColor = " SELECT count(couleur_module) as nombre_couleur,couleur_module\n" +
@@ -195,14 +274,18 @@ public class Request {
         JSonReader register = new JSonReader();
         List<String> newProject = register.readFileLoginSession("src/main/java/com/company/guijava/userSession.json");
 
-        String requestnewProject = "INSERT INTO projet (nom_projet,description_projet,id_utilisateur) " +
-                "VALUES (?,?,?)";
+        String requestnewProject = "INSERT INTO projet (nom_projet,date_creation ,description_projet,id_utilisateur) " +
+                "VALUES (?,?,?, ?)";
 
+        java.util.Date utilDate = new java.util.Date();
+        java.sql.Date date = new java.sql.Date(utilDate.getTime());
         try {
             prep1 = connexion.connect().prepareStatement(requestnewProject);
             prep1.setString(1, name_project);
-            prep1.setString(2, desc_project);
-            prep1.setString(3, newProject.get(2));
+            prep1.setDate(2, date);
+
+            prep1.setString(3, desc_project);
+            prep1.setString(4, newProject.get(2));
 
             prep1.executeUpdate();
             prep1.close();
@@ -211,8 +294,47 @@ public class Request {
         } catch (Exception e) {
             System.out.println("not insert");
         }
+    }
 
 
+    public void editProject(String id_project, String name_project, String desc_project) {
 
+        String requestnewProject = "UPDATE projet " +
+                "SET nom_projet = ? , description_projet = ? " +
+                "WHERE id = ?";
+        try {
+            prep1 = connexion.connect().prepareStatement(requestnewProject);
+            prep1.setString(1, name_project);
+            prep1.setString(2, desc_project);
+            prep1.setString(3, id_project);
+            prep1.executeUpdate();
+            prep1.close();
+            System.out.println("insert ");
+
+        } catch (Exception e) {
+            System.out.println("not insert");
+        }
+    }
+
+
+    public void endProject(String idProject) {
+        String requestnewProject = "UPDATE projet \n" +
+                "SET date_fin = ? " +
+                "WHERE id = ?";
+
+        java.util.Date utilDate = new java.util.Date();
+        java.sql.Date date = new java.sql.Date(utilDate.getTime());
+        try {
+            prep1 = connexion.connect().prepareStatement(requestnewProject);
+            prep1.setDate(1, date);
+            prep1.setString(2, idProject);
+
+            prep1.executeUpdate();
+            prep1.close();
+            System.out.println("insert " + date);
+
+        } catch (Exception e) {
+            System.out.println("not insert");
+        }
     }
 }

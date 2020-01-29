@@ -11,9 +11,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserWindow extends JFrame {
+public class DashboardUser extends JFrame {
 
-    String[] header = {"nom du projet", "date de création", "description du projet", "date de fin"};
+    String[] header = {"id project", "nom du projet", "date de création", "description du projet", "date de fin"};
     ModeleStatic model = new ModeleStatic(header);
     TableProject boat;
     ArrayList<String> arrivalInfo = new ArrayList<String>();
@@ -21,9 +21,9 @@ public class UserWindow extends JFrame {
     Request requestsSQL = new Request();
     JPanel panelTab = new JPanel();
 
-    public UserWindow() {
+    public DashboardUser() {
 
-        JFrame uw = new JFrame("Project List");
+        JFrame uw = this;
         this.setTitle("Project List");
 
         JPanel buttonPan = new JPanel();
@@ -53,14 +53,14 @@ public class UserWindow extends JFrame {
                     i++;
                     if (i == this.header.length) {
                         this.model.addInformation(new TableProject(this.arrivalInfo.get(0), this.arrivalInfo.get(1), this.arrivalInfo.get(2),
-                                this.arrivalInfo.get(3)));
+                                this.arrivalInfo.get(3), this.arrivalInfo.get(4)));
                         this.arrivalInfo.clear();
                         i = 0;
                     }
                 }
 
             }
-            else { this.boat = new TableProject(" ", " ", " ", " ");}
+            else { this.boat = new TableProject(" ", " ", " ", " ", " ");}
         } catch (Exception i) {
             System.out.println(i);
         }
@@ -86,8 +86,36 @@ public class UserWindow extends JFrame {
         e.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                for (int i=0; i<tableau.getColumnCount(); i++) {
+                    if(tableau.getColumnName(i).equals("id project")) {
+                        Object obj = tableau.getValueAt(tableau.getSelectedRow(), i);
+                        String idProject = (String) (obj);
 
-                ProductListUser ep = new ProductListUser();
+
+                        new AboutProject(idProject);
+                        uw.dispose();
+
+                    }
+                }
+
+            }
+        });
+
+        c.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (int i=0; i<tableau.getColumnCount(); i++) {
+                    if(tableau.getColumnName(i).equals("id project")) {
+                        Object obj = tableau.getValueAt(tableau.getSelectedRow(), i);
+                        String idProject = (String) (obj);
+
+
+                        //System.out.println("id du projet cliqué: "+ idProject);
+                        new EditProject(idProject);
+                        uw.dispose();
+
+                    }
+                }
 
             }
         });

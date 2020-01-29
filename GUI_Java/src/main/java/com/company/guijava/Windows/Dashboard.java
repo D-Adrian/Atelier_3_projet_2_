@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Dashboard extends JFrame {
 
-    String[] header = {"nom du projet", "date de création", "description du projet", "date de fin"};
+    String[] header = {"id project", "nom du projet", "date de création", "description du projet", "date de fin"};
     ModeleStatic model = new ModeleStatic(header);
     TableProject door;
     ArrayList<String> arrivalInfo = new ArrayList<String>();
@@ -65,14 +65,14 @@ public class Dashboard extends JFrame {
                     i++;
                     if (i == this.header.length) {
                         this.model.addInformation(new TableProject(this.arrivalInfo.get(0), this.arrivalInfo.get(1), this.arrivalInfo.get(2),
-                                this.arrivalInfo.get(3)));
+                                this.arrivalInfo.get(3), this.arrivalInfo.get(4)));
                         this.arrivalInfo.clear();
                         i = 0;
                     }
                 }
 
             }
-            else { this.door = new TableProject(" ", " ", " ", " ");}
+            else { this.door = new TableProject(" ", " ", " ", " ", " ");}
         } catch (Exception i) {
             System.out.println(i);
         }
@@ -93,6 +93,22 @@ public class Dashboard extends JFrame {
             }
         });
 
+        d.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (int i=0; i<tableau.getColumnCount(); i++) {
+                    if(tableau.getColumnName(i).equals("id project")) {
+                        Object obj = tableau.getValueAt(tableau.getSelectedRow(), i);
+                        String idProject = (String) (obj);
+
+                        Request request = new Request();
+                        request.endProject(idProject);
+                        dispose();
+                        new Dashboard();
+                    }
+                }
+            }
+        });
         this.setVisible(true);
     }
 }

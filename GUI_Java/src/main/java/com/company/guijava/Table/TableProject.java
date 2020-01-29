@@ -20,9 +20,10 @@ public class TableProject implements ITable {
      * @param description_projet project description
      * @param date_fin end date
      */
-    public TableProject(String nom_projet, String date_creation, String description_projet, String date_fin) {
+    public TableProject(String id_projet, String nom_projet, String date_creation, String description_projet, String date_fin) {
         super();
 
+        this.listValues.add(id_projet);
         this.listValues.add(nom_projet);
         this.listValues.add(date_creation);
         this.listValues.add(description_projet);

@@ -6,12 +6,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
-public class AddNewProject extends JFrame {
+public class EditProject extends JFrame {
 
-    public AddNewProject()
+    public EditProject(String idProject)
     {
 
+        Request request=new Request();
+        List<String> values =request.DisplayProjectToEdit(idProject);
         JFrame f = this;
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,14 +27,16 @@ public class AddNewProject extends JFrame {
         this.setLayout(null);
         this.setVisible(true);
 
-        JButton validate = new JButton("Validate");
+        JButton validate = new JButton("Update");
         validate.setBounds(350, 300, 100, 50);
         this.add(validate);
 
         final JTextField nomProjet = new JTextField();
+        nomProjet.setText(values.get(0));
         nomProjet.setBounds(135, 20, 350, 30);
 
         final JTextField description = new JTextField();
+        description.setText(values.get(1));
         description.setBounds(135, 75, 350, 150);
 
 
@@ -52,10 +57,10 @@ public class AddNewProject extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 Request request = new Request();
-                request.newProject(nomProjet.getText(), description.getText());
-                new PopupProject(" Project successfully created ! ");
+                request.editProject(idProject, nomProjet.getText(), description.getText());
+                new PopupProject(" Project updated! ");
                 f.dispose();
-
+                new DashboardUser();
             }
         });
     }

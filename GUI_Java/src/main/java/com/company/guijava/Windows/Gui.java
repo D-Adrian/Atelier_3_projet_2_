@@ -6,7 +6,6 @@ import com.company.guijava.Save.JsonWriterLogin;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -65,7 +64,7 @@ public class Gui extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE DE VERIF
                 //Dashboard db = new Dashboard();
-                UserWindow uw = new UserWindow();
+                new DashboardUser();
             }
         });
 

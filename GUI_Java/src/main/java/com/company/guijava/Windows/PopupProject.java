@@ -9,15 +9,15 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class PopupProjectCreated extends JFrame{
+public class PopupProject extends JFrame{
 
-    public PopupProjectCreated() {
+    public PopupProject(String message) {
 
 
         JPanel p = new JPanel();
 
         JLabel jp = new JLabel();
-        jp.setText(" Project successfully created ! ");
+        jp.setText(message);
         Border margin = new EmptyBorder(15, 14, 25, 10);
         jp.setBorder(margin);
 

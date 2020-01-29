@@ -2,26 +2,29 @@ package com.company.guijava.Windows;
 
 import com.company.guijava.ModeleStatic;
 import com.company.guijava.RequestSQL.Request;
+import com.company.guijava.Table.TableDetails;
 import com.company.guijava.Table.TableProduct;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductListUser extends JFrame {
-    String[] header = {"nom du produit", "date d'ajout"};
+public class AboutProject extends JFrame {
+    String[] header = {"id_projet", "id_produit", "largeur_totale", "longueur_totale", "epaisseur_totale", "prix_ht", "tva"};
     ModeleStatic model = new ModeleStatic(header);
-    TableProduct door;
+    TableDetails door;
     ArrayList<String> arrivalInfo = new ArrayList<String>();
 
     Request requestsSQL = new Request();
     JPanel panelTab = new JPanel();
 
-    public ProductListUser() {
+    public AboutProject(String idProject) {
 
         JFrame uw = this;
-        this.setTitle("Product List");
+        this.setTitle("Details");
 
         JPanel buttonPan = new JPanel();
 
@@ -42,7 +45,7 @@ public class ProductListUser extends JFrame {
 
         List<String> values;
         try {
-            values = this.requestsSQL.DisplayProduct();
+            values = this.requestsSQL.DisplayDetails(idProject);
             if (!values.isEmpty()) {
                 int i = 0;
 
@@ -50,14 +53,14 @@ public class ProductListUser extends JFrame {
                     this.arrivalInfo.add(infoArrive);
                     i++;
                     if (i == this.header.length) {
-                        this.model.addInformation(new TableProduct(this.arrivalInfo.get(0), this.arrivalInfo.get(1)));
+                        this.model.addInformation(new TableDetails(this.arrivalInfo.get(0), this.arrivalInfo.get(1),this.arrivalInfo.get(2),this.arrivalInfo.get(3),this.arrivalInfo.get(4),this.arrivalInfo.get(5),this.arrivalInfo.get(6)));
                         this.arrivalInfo.clear();
                         i = 0;
                     }
                 }
 
             }
-            else { this.door = new TableProduct(" ", " ");}
+            else { this.door = new TableDetails(" ", " ", " ", " ", " ", " ", " ");}
         } catch (Exception i) {
             System.out.println(i);
         }
@@ -67,6 +70,16 @@ public class ProductListUser extends JFrame {
         this.panelTab.add(new JScrollPane(tableau), BorderLayout.CENTER);
         this.add(panelTab, BorderLayout.CENTER);
         this.add(buttonPan, BorderLayout.SOUTH);
+
+        b.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                new EditAboutProject();
+                uw.dispose();
+
+            }
+        });
 
         this.setVisible(true);
     }
