@@ -3,7 +3,6 @@ package com.company.guijava.Windows;
 import com.company.guijava.ModeleStatic;
 import com.company.guijava.RequestSQL.Request;
 import com.company.guijava.Table.TableDetails;
-import com.company.guijava.Table.TableProduct;
 
 import javax.swing.*;
 import java.awt.*;
@@ -74,9 +73,10 @@ public class AboutProject extends JFrame {
         b.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                        //dispose();
+                new AddProductToProject(idProject);
 
-                new EditAboutProject();
-                uw.dispose();
+                //uw.dispose();
 
             }
         });

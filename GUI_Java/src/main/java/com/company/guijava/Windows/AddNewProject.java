@@ -14,7 +14,7 @@ public class AddNewProject extends JFrame {
 
         JFrame f = this;
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         final JLabel label = new JLabel();
         label.setBounds(210, 10, 300, 40);
         label.setFont(new Font("Courier New", Font.BOLD, 18));

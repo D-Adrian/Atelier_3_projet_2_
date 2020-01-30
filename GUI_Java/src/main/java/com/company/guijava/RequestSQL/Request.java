@@ -337,4 +337,65 @@ public class Request {
             System.out.println("not insert");
         }
     }
+
+    public String selectIdProduct(String productName) {
+        String requestnewProject = "SELECT id FROM produit WHERE nom_produit=?";
+
+        try {
+            prep1 = connexion.connect().prepareStatement(requestnewProject);
+            prep1.setString(1, productName);
+            ResultSet result = prep1.executeQuery();
+            List<String> values = request.seeRequest(result);
+            prep1.close();
+
+            return values.get(0);
+
+        } catch (Exception e) {
+            System.out.println("not found");
+            return null;
+        }
+    }
+
+    public List<String> selectIdMaterial(String materialName) {
+        String requestnewProject = "SELECT id, prix_m2_ht*(tva/100+1) FROM materiau WHERE nom_materiau=?";
+
+        try {
+            prep1 = connexion.connect().prepareStatement(requestnewProject);
+            prep1.setString(1, materialName);
+            ResultSet result = prep1.executeQuery();
+            List<String> values = request.seeRequest(result);
+            prep1.close();
+            return values;
+
+        } catch (Exception e) {
+            System.out.println("not received");
+            return null;
+        }
+    }
+
+
+
+    public void InsertProductToProject(String id_projet, String id_produit, String largeur_totale, String longueur_totale, String epaisseur_totale, String prix_ht){
+        String requestnewProject = "INSERT INTO produit_projet (id_projet,id_produit ,largeur_totale, longueur_totale, epaisseur_totale, prix_ht) " +
+                "VALUES (?,?,?,?,?,?)";
+
+        try {
+            System.out.println("try to insert");
+
+            prep1 = connexion.connect().prepareStatement(requestnewProject);
+            prep1.setString(1, id_projet);
+            prep1.setString(2, id_produit);
+            prep1.setString(3, largeur_totale + "cm");
+            prep1.setString(4, longueur_totale+"cm");
+            prep1.setString(5, epaisseur_totale+"mm");
+            prep1.setString(6, prix_ht);
+            System.out.println("insert");
+
+            prep1.executeUpdate();
+            prep1.close();
+
+        } catch (Exception e) {
+            System.out.println("not insert");
+        }
+    }
 }

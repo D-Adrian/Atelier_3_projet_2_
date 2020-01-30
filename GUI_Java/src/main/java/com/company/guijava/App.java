@@ -1,9 +1,6 @@
 package com.company.guijava;
 
-import com.company.guijava.Windows.EditAboutProject;
-import com.company.guijava.Windows.Gui;
 import com.company.guijava.Windows.Login;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 public class App {
 
