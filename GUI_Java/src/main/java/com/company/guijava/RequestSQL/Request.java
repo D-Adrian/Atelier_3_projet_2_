@@ -106,7 +106,6 @@ public class Request {
     }
 
 
-
     public List<String> DisplayProject() {
         JSonReader register = new JSonReader();
         List<String> loginRegister = register.readFileLoginSession("src/main/java/com/company/guijava/userSession.json");
@@ -155,7 +154,7 @@ public class Request {
 
     public List<String> DisplayProjectAdmin() {
 
-        String displayP = "SELECT id, nom_projet,date_creation,description_projet,date_fin \n" +
+        String displayP = "SELECT id, nom_projet, date_creation, description_projet, date_fin " +
                 " FROM projet " +
                 " ORDER BY date_creation ASC";
         try {
@@ -195,7 +194,7 @@ public class Request {
 
     public List<String> DisplayDetails(String idProject) {
 
-        String displayP = "SELECT id_projet, id_produit, largeur_totale, longueur_totale, epaisseur_totale, prix_ht, tva " +
+        String displayP = "SELECT id, id_projet, id_produit, largeur_totale, longueur_totale, epaisseur_totale, prix_ht, tva " +
                 "FROM produit_projet WHERE id_projet=? " +
                 "ORDER BY id_projet ASC";
         try {
@@ -374,8 +373,7 @@ public class Request {
     }
 
 
-
-    public void InsertProductToProject(String id_projet, String id_produit, String largeur_totale, String longueur_totale, String epaisseur_totale, String prix_ht){
+    public void InsertProductToProject(String id_projet, String id_produit, String largeur_totale, String longueur_totale, String epaisseur_totale, String prix_ht) {
         String requestnewProject = "INSERT INTO produit_projet (id_projet,id_produit ,largeur_totale, longueur_totale, epaisseur_totale, prix_ht) " +
                 "VALUES (?,?,?,?,?,?)";
 
@@ -386,13 +384,46 @@ public class Request {
             prep1.setString(1, id_projet);
             prep1.setString(2, id_produit);
             prep1.setString(3, largeur_totale + "cm");
-            prep1.setString(4, longueur_totale+"cm");
-            prep1.setString(5, epaisseur_totale+"mm");
+            prep1.setString(4, longueur_totale + "cm");
+            prep1.setString(5, epaisseur_totale + "mm");
             prep1.setString(6, prix_ht);
             System.out.println("insert");
 
             prep1.executeUpdate();
             prep1.close();
+
+        } catch (Exception e) {
+            System.out.println("not insert");
+        }
+    }
+
+    public void deleteProductToProject(String idProduitProjet) {
+        String requestDeleteProductToProject = "DELETE FROM produit_projet " +
+                " WHERE id = ?";
+
+        try {
+            prep1 = connexion.connect().prepareStatement(requestDeleteProductToProject);
+            prep1.setString(1, idProduitProjet);
+            prep1.executeUpdate();
+            prep1.close();
+            System.out.println("insert");
+
+        } catch (Exception e) {
+            System.out.println("not insert");
+        }
+    }
+
+
+    public void deleteProject(String idProduitProjet) {
+        String requestDeleteProductToProject = "DELETE FROM projet " +
+                " WHERE id = ?";
+
+        try {
+            prep1 = connexion.connect().prepareStatement(requestDeleteProductToProject);
+            prep1.setString(1, idProduitProjet);
+            prep1.executeUpdate();
+            prep1.close();
+            System.out.println("insert");
 
         } catch (Exception e) {
             System.out.println("not insert");

@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Dashboard extends JFrame {
-
     String[] header = {"id project", "nom du projet", "date de création", "description du projet", "date de fin"};
     ModeleStatic model = new ModeleStatic(header);
     TableProject door;
@@ -24,7 +23,7 @@ public class Dashboard extends JFrame {
 
     public Dashboard() {
 
-        JFrame uw = new JFrame("Dashboard");
+        JFrame uw = this;
         this.setTitle("Dashboard");
 
         JPanel buttonPan = new JPanel();
@@ -32,6 +31,7 @@ public class Dashboard extends JFrame {
         JButton b = new JButton("New Project");
         JButton c = new JButton("Edit Project");
         JButton d = new JButton("End a Project");
+        JButton a = new JButton("Delete Project");
         JButton e = new JButton("Product List");
 
         b.addActionListener(e1 -> new AddNewProject());
@@ -42,6 +42,7 @@ public class Dashboard extends JFrame {
         buttonPan.add(b);
         buttonPan.add(c);
         buttonPan.add(d);
+        buttonPan.add(a);
         buttonPan.add(e);
 
 
@@ -109,6 +110,24 @@ public class Dashboard extends JFrame {
                 }
             }
         });
+
+        a.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (int i=0; i<tableau.getColumnCount(); i++) {
+                    if(tableau.getColumnName(i).equals("id project")) {
+                        Object obj = tableau.getValueAt(tableau.getSelectedRow(), i);
+                        String idProject = (String) (obj);
+
+                        Request request = new Request();
+                        request.deleteProject(idProject);
+                        dispose();
+                        new Dashboard();
+                    }
+                }
+            }
+        });
+
         this.setVisible(true);
     }
 }

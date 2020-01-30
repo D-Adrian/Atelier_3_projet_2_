@@ -41,7 +41,7 @@ public class AddProductToProject extends JFrame {
         JLabel l4 = new JLabel("Epaisseur (mm):");
         l4.setBounds(740, 350, 100, 30);
         JLabel l5 = new JLabel("Module :");
-        l5.setBounds(290, 450, 80, 30);
+        l5.setBounds(250, 450, 80, 30);
         JLabel l6 = new JLabel("Matériau :");
         l6.setBounds(520, 450, 80, 30);
 
@@ -65,7 +65,7 @@ public class AddProductToProject extends JFrame {
 
         String[] listModule = {"armature", "panneau superieur", "panneau inferieur"};
         JComboBox comboBoxColor=new JComboBox(listModule);
-        comboBoxColor.setBounds(350, 416, 100, 100);
+        comboBoxColor.setBounds(310, 416, 180, 100);
 
         List<String> valuesMaterial = new Request().listOfMaterial();
         String[] listMaterial = new String[valuesMaterial.size()];

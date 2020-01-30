@@ -23,9 +23,10 @@ public class TableDetails implements ITable {
      * @param prix_ht creation date
      * @param tva creation date
      */
-    public TableDetails(String id_projet, String id_produit, String largeur_totale, String longueur_totale, String epaisseur_totale, String prix_ht, String tva) {
+    public TableDetails(String id, String id_projet, String id_produit, String largeur_totale, String longueur_totale, String epaisseur_totale, String prix_ht, String tva) {
         super();
 
+        this.listValues.add(id);
         this.listValues.add(id_projet);
         this.listValues.add(id_produit);
         this.listValues.add(largeur_totale);

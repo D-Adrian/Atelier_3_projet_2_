@@ -109,8 +109,6 @@ public class DashboardUser extends JFrame {
                         Object obj = tableau.getValueAt(tableau.getSelectedRow(), i);
                         String idProject = (String) (obj);
 
-
-                        //System.out.println("id du projet cliqué: "+ idProject);
                         new EditProject(idProject);
                         uw.dispose();
 
