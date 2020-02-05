@@ -151,6 +151,64 @@ public class Request {
         }
     }
 
+    public List<String> DisplayProjectToEditAdmin(String id_project) {
+
+        String displayP = "SELECT nom_projet,description_projet \n" +
+                "FROM projet WHERE id=?  " +
+                "ORDER BY date_creation ASC";
+        try {
+            prep1 = connexion.connect().prepareStatement(displayP, ResultSet.TYPE_SCROLL_SENSITIVE);
+            prep1.setString(1, id_project);
+            ResultSet result = prep1.executeQuery();
+            List<String> values = request.seeRequest(result);
+            prep1.close();
+
+            return values;
+
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public List<String> DisplayProductDimension(String idProductProject){
+        String displayP = "SELECT largeur_totale, longueur_totale, epaisseur_totale, id_produit FROM produit_projet WHERE id=? ";
+
+        try {
+            prep1 = connexion.connect().prepareStatement(displayP, ResultSet.TYPE_SCROLL_SENSITIVE);
+            prep1.setString(1, idProductProject);
+            ResultSet result = prep1.executeQuery();
+            List<String> values = request.seeRequest(result);
+            prep1.close();
+
+            return values;
+
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public List<String> DisplayProductMaterialModule(String idProductProject){
+        String displayP = "SELECT PP.nom_module, M.nom_materiau FROM personnalisation_porte as PP " +
+                " LEFT JOIN materiau as M ON M.id=PP.id_materiau " +
+                " WHERE PP.id_produit_projet=? ";
+
+        try {
+            prep1 = connexion.connect().prepareStatement(displayP, ResultSet.TYPE_SCROLL_SENSITIVE);
+            prep1.setString(1, idProductProject);
+            ResultSet result = prep1.executeQuery();
+            List<String> values = request.seeRequest(result);
+            prep1.close();
+
+            return values;
+
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 
     public List<String> DisplayProjectAdmin() {
 
@@ -213,14 +271,14 @@ public class Request {
     }
 
 
-    public List<String> favoriteColor() {
-        String requestColor = " SELECT count(couleur_module) as nombre_couleur,couleur_module\n" +
+    public List<String> favoriteModules() {
+        String requestModule = " SELECT count(nom_module) as nombre_module,nom_module\n" +
                 "        FROM personnalisation_porte\n" +
-                "        GROUP BY couleur_module\n" +
-                "        ORDER BY nombre_couleur DESC\n" +
+                "        GROUP BY nom_module\n" +
+                "        ORDER BY nombre_module DESC\n" +
                 "        LIMIT 3";
         try {
-            prep1 = connexion.connect().prepareStatement(requestColor, ResultSet.TYPE_SCROLL_SENSITIVE);
+            prep1 = connexion.connect().prepareStatement(requestModule, ResultSet.TYPE_SCROLL_SENSITIVE);
             ResultSet result = prep1.executeQuery();
             List<String> values = request.seeRequest(result);
             prep1.close();
@@ -424,6 +482,22 @@ public class Request {
             prep1.executeUpdate();
             prep1.close();
             System.out.println("insert");
+
+        } catch (Exception e) {
+            System.out.println("not insert");
+        }
+    }
+
+    public void editProduct(String idProject, String idProduct, String largeur, String longueur, String epaisseur, String prix_ht){
+        String requestnewProject = "UPDATE produit_projet \n" +
+                "SET id_projet = ?, id_produit = ?, largeur_totale = ?, longueur_totale = ?, epaisseur_totale = ?, prix_ht = ? " +
+                "WHERE id = ?";
+
+        try {
+            prep1 = connexion.connect().prepareStatement(requestnewProject);
+            prep1.executeUpdate();
+            prep1.close();
+            System.out.println("insert ");
 
         } catch (Exception e) {
             System.out.println("not insert");

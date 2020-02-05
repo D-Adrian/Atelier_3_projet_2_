@@ -27,20 +27,15 @@ public class AboutProject extends JFrame {
 
         JPanel buttonPan = new JPanel();
 
-
         JButton b = new JButton("Add Product");
         JButton c = new JButton("Edit Product");
         JButton d = new JButton("Delete Product");
 
-
         this.setSize(600, 600);
         this.setLocationRelativeTo(null);
-        //this.setLayout(null);
         buttonPan.add(b);
         buttonPan.add(c);
         buttonPan.add(d);
-
-
 
         List<String> values;
         try {
@@ -52,14 +47,15 @@ public class AboutProject extends JFrame {
                     this.arrivalInfo.add(infoArrive);
                     i++;
                     if (i == this.header.length) {
-                        this.model.addInformation(new TableDetails(this.arrivalInfo.get(0), this.arrivalInfo.get(1),this.arrivalInfo.get(2),this.arrivalInfo.get(3),this.arrivalInfo.get(4),this.arrivalInfo.get(5), this.arrivalInfo.get(6), this.arrivalInfo.get(7)));
+                        this.model.addInformation(new TableDetails(this.arrivalInfo.get(0), this.arrivalInfo.get(1), this.arrivalInfo.get(2), this.arrivalInfo.get(3), this.arrivalInfo.get(4), this.arrivalInfo.get(5), this.arrivalInfo.get(6), this.arrivalInfo.get(7)));
                         this.arrivalInfo.clear();
                         i = 0;
                     }
                 }
 
+            } else {
+                this.door = new TableDetails(" ", " ", " ", " ", " ", " ", " ", "");
             }
-            else { this.door = new TableDetails(" ", " ", " ", " ", " ", " ", " ", "");}
         } catch (Exception i) {
             System.out.println(i);
         }
@@ -75,31 +71,46 @@ public class AboutProject extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 new AddProductToProject(idProject);
+                uw.dispose();
 
             }
         });
 
-        d.addActionListener(new ActionListener() {
+        c.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for (int i=0; i<tableau.getColumnCount(); i++) {
-                    if(tableau.getColumnName(i).equals("id")) {
+                for (int i = 0; i < tableau.getColumnCount(); i++) {
+                    if (tableau.getColumnName(i).equals("id")) {
                         Object obj = tableau.getValueAt(tableau.getSelectedRow(), i);
-                        String idProject = (String) (obj);
+                        String idProductProject = (String) (obj);
 
-                        Request request = new Request();
-                        request.deleteProductToProject(idProject);
-
-                        new AboutProject(idProject);
+                        new EditProduct(idProductProject);
                         uw.dispose();
 
                     }
                 }
-
             }
         });
 
 
+        d.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (int i = 0; i < tableau.getColumnCount(); i++) {
+                    if (tableau.getColumnName(i).equals("id")) {
+                        Object obj = tableau.getValueAt(tableau.getSelectedRow(), i);
+                        String idProductProject = (String) (obj);
+
+                        Request request = new Request();
+                        request.deleteProductToProject(idProductProject);
+
+                        uw.dispose();
+                        AboutProject ap = new AboutProject(idProject);
+
+                    }
+                }
+            }
+        });
         this.setVisible(true);
     }
 }

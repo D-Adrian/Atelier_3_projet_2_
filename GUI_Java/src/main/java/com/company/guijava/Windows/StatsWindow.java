@@ -13,17 +13,10 @@ public class StatsWindow extends JFrame {
 
     public StatsWindow() {
 
-        JFrame sw = new JFrame("Stats Info");
-
-
-        ImageIcon icon = new ImageIcon("GUI_Java/imgs/Leroy_Merlu.png");
-        JLabel logo = new JLabel("", icon, JLabel.CENTER);
-        this.add(logo);
-
         JPanel labelPan = new JPanel();
         labelPan.setLayout(new BorderLayout());
-        List<String> values = new Request().favoriteColor();
-        JLabel couleurs = new JLabel("        Top 3 des couleurs les plus utilisées: " + values.get(1)+ ", " + values.get(3) + ", " + values.get(5));
+        List<String> values = new Request().favoriteModules();
+        JLabel couleurs = new JLabel("        Top 3 des modules les plus utilisées: " + values.get(1)+ ", " + values.get(3) + ", " + values.get(5));
         labelPan.add(couleurs, BorderLayout.CENTER);
 
         List<String> valuesProject = new Request().nbProject();
@@ -31,7 +24,6 @@ public class StatsWindow extends JFrame {
         labelPan.add(Projet, BorderLayout.NORTH);
 
         List<String> valuesGain = new Request().gainTotal();
-
 
         JPanel buttonPan = new JPanel();
 
@@ -47,16 +39,6 @@ public class StatsWindow extends JFrame {
             }
         });
 
-
-
-
-
-
-
-
-
-
-
         this.setVisible(true);
         this.setSize(600, 400);
         this.setLocationRelativeTo(null);
@@ -65,7 +47,7 @@ public class StatsWindow extends JFrame {
         this.add(buttonPan, BorderLayout.SOUTH);
         this.add(labelPan, BorderLayout.CENTER);
         //add(couleurs);
-        //add(Projet);
+        //this.add(Projet);
 
     }
 }

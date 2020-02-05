@@ -8,7 +8,7 @@ public class App {
 
     public static void main(String[] args) {
 
-        Connexion connexion = new Connexion();
+        new Connexion();
         new Login();
 
 

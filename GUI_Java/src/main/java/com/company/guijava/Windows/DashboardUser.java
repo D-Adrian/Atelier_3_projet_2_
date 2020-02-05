@@ -80,6 +80,7 @@ public class DashboardUser extends JFrame {
 
                 new AddNewProject();
 
+
             }
         });
 

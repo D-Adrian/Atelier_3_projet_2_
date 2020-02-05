@@ -21,6 +21,9 @@ public class AddProductToProject extends JFrame {
 
     public AddProductToProject(String idProject) {
 
+
+        JFrame aptp = this;
+
         this.setTitle("Adding Project");
 
         final JTextField largeurField = new JTextField();
@@ -40,18 +43,21 @@ public class AddProductToProject extends JFrame {
         l3.setBounds(500, 350, 100, 30);
         JLabel l4 = new JLabel("Epaisseur (mm):");
         l4.setBounds(740, 350, 100, 30);
-        JLabel l5 = new JLabel("Module :");
-        l5.setBounds(250, 450, 80, 30);
-        JLabel l6 = new JLabel("Matériau :");
-        l6.setBounds(520, 450, 80, 30);
 
-        JLabel l7 = new JLabel("Tva 10 % | Prix Total :");
-        l7.setBounds(350, 650, 330, 30);
+        JLabel l10 = new JLabel("Armature :");
+        l10.setBounds(340, 450, 120, 30);
+        JLabel l11 = new JLabel("Panneau supérieur :");
+        l11.setBounds(340, 480, 140, 30);
+        JLabel l12 = new JLabel("Panneau inférieur :");
+        l12.setBounds(340, 510, 120, 30);
 
-        JButton b = new JButton("Confirm");
+        JLabel l8 = new JLabel("Tva 10 % | Prix Total :");
+        l8.setBounds(350, 650, 330, 30);
+
+        JButton b = new JButton("Add");
         b.setBounds(870, 700, 80, 50);
 
-        JButton c = new JButton("Add");
+        JButton c = new JButton("Confirm");
         c.setBounds(20, 700, 80, 50);
 
         List<String> valuesType = new Request().listOfProduct();
@@ -59,25 +65,30 @@ public class AddProductToProject extends JFrame {
         for (int i=0; i<valuesType.size(); i++){
             listType[i]=valuesType.get(i);
         }
+
         JComboBox comboBoxType=new JComboBox(listType);
         comboBoxType.setBounds(90, 316, 150, 100);
-
-
-        String[] listModule = {"armature", "panneau superieur", "panneau inferieur"};
-        JComboBox comboBoxColor=new JComboBox(listModule);
-        comboBoxColor.setBounds(310, 416, 180, 100);
 
         List<String> valuesMaterial = new Request().listOfMaterial();
         String[] listMaterial = new String[valuesMaterial.size()];
         for (int i=0; i<valuesMaterial.size(); i++){
             listMaterial[i]=valuesMaterial.get(i);
         }
+
         JComboBox comboBoxMaterial=new JComboBox(listMaterial);
-        comboBoxMaterial.setBounds(586, 416, 170, 100);
+        comboBoxMaterial.setBounds(486, 440, 170, 50);
+
+        JComboBox comboBoxMaterial2=new JComboBox(listMaterial);
+        comboBoxMaterial2.setBounds(486, 470, 170, 50);
+
+        JComboBox comboBoxMaterial3=new JComboBox(listMaterial);
+        comboBoxMaterial3.setBounds(486, 500, 170, 50);
+
 
         this.add(comboBoxType);
-        this.add(comboBoxColor);
         this.add(comboBoxMaterial);
+        this.add(comboBoxMaterial2);
+        this.add(comboBoxMaterial3);
 
         this.add(epaisseurField);
         this.add(longueurField);
@@ -86,15 +97,16 @@ public class AddProductToProject extends JFrame {
         this.add(l2);
         this.add(l3);
         this.add(l4);
-        this.add(l5);
-        this.add(l6);
-        this.add(l7);
+        this.add(l8);
+        this.add(l10);
+        this.add(l11);
+        this.add(l12);
 
         this.add(b);
         this.add(c);
 
 
-        b.addActionListener(new ActionListener() {
+        c.addActionListener(new ActionListener() {
             @Override
                 public void actionPerformed(ActionEvent e) {
 
@@ -111,14 +123,13 @@ public class AddProductToProject extends JFrame {
                 float dimension = largInt*longInt;
 
                 epaisseur = epaisseurField.getText();
-                color = comboBoxColor.getSelectedItem().toString();
                 String material = comboBoxMaterial.getSelectedItem().toString();
                 materialInfo = request.selectIdMaterial(material);
                 float priceFloat = Math.round(Float.parseFloat(materialInfo.get(1))*dimension);
 
                 prix_ht = String.valueOf(priceFloat);
                 isFull=true;
-                l7.setText("Tva 10 % | Prix Total: " + prix_ht +"€");
+                l8.setText("Tva 10 % | Prix Total: " + prix_ht +"€");
             }
                 else {
                 isFull=false;
@@ -128,12 +139,14 @@ public class AddProductToProject extends JFrame {
             }
         });
 
-        c.addActionListener(new ActionListener() {
+        b.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(isFull){
                     Request request = new Request();
                     request.InsertProductToProject(idProject, idProduct , largeur, longueur, epaisseur, prix_ht);
+                    aptp.dispose();
+                    new AboutProject(idProject);
                 }
             }
         });

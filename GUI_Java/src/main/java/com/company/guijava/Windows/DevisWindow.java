@@ -1,11 +1,26 @@
 package com.company.guijava.Windows;
 
+import com.company.guijava.ModeleStatic;
+import com.company.guijava.RequestSQL.Request;
+import com.company.guijava.Table.TableDetails;
+import com.company.guijava.Table.TableDevis;
+import com.company.guijava.Table.TableGain;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DevisWindow extends JFrame {
+
+    String[] header = {"Designation", "Unit", "Amount", "Price", "Total"};
+    ModeleStatic model = new ModeleStatic(header);
+    TableDevis devis;
+    ArrayList<String> arrivalInfo = new ArrayList<String>();
+
+    Request requestsSQL = new Request();
+    JPanel panelTab = new JPanel();
+
 
     public DevisWindow() {
 
@@ -16,11 +31,38 @@ public class DevisWindow extends JFrame {
         label.setFont(new Font("Courier New",Font.BOLD, 18));
         this.getContentPane().add(label);
         this.setLayout(null);
-
-        this.setVisible(true);
         this.setSize(600, 600);
         this.setLocationRelativeTo(null);
         this.setLayout(null);
+
+        List<String> values;
+        try {
+            values = this.requestsSQL.gainTotal();
+            if (!values.isEmpty()) {
+                int i = 0;
+
+                for (String infoArrive : values) {
+                    this.arrivalInfo.add(infoArrive);
+                    i++;
+                    if (i == this.header.length) {
+                        this.model.addInformation(new TableDevis(this.arrivalInfo.get(0), this.arrivalInfo.get(1), this.arrivalInfo.get(2), this.arrivalInfo.get(3), this.arrivalInfo.get(4)));
+                        this.arrivalInfo.clear();
+                        i = 0;
+                    }
+                }
+
+            }
+            else { this.devis = new TableDevis(" ", " "," "," "," ");}
+        } catch (Exception i) {
+            System.out.println(i);
+        }
+
+        this.panelTab.setLayout(new BorderLayout());
+        JTable tableau = new JTable(this.model);
+        this.panelTab.add(new JScrollPane(tableau), BorderLayout.CENTER);
+        this.add(panelTab, BorderLayout.CENTER);
+
+        this.setVisible(true);
 
     }
 }

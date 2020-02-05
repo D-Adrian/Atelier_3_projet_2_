@@ -15,14 +15,18 @@ public class TableDevis implements ITable {
 
     /**
      *  TableProject constructor, used to set all the column values of our table
-     * @param mois project name
-     * @param gain creation date
+     * @param Designation project name
+     * @param Unit creation date
      */
-    public TableDevis(String mois, String gain) {
+    public TableDevis(String Designation, String Unit, String Amount, String Price, String Total) {
         super();
 
-        this.listValues.add(mois);
-        this.listValues.add(gain);
+        this.listValues.add(Designation);
+        this.listValues.add(Unit);
+        this.listValues.add(Amount);
+        this.listValues.add(Price);
+        this.listValues.add(Total);
+
     }
 
     /**

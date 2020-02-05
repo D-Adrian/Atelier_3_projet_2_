@@ -8,13 +8,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class EditProject extends JFrame {
+public class EditProjectAdmin extends JFrame {
 
-    public EditProject(String idProject)
+    public EditProjectAdmin(String id_Project)
     {
 
         Request request=new Request();
-        List<String> values =request.DisplayProjectToEdit(idProject);
+        List<String> values =request.DisplayProjectToEditAdmin(id_Project);
         JFrame f = this;
 
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -57,7 +57,7 @@ public class EditProject extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 Request request = new Request();
-                request.editProject(idProject, nomProjet.getText(), description.getText());
+                request.editProject(id_Project, nomProjet.getText(), description.getText());
                 new PopupProject(" Project updated ! ");
                 f.dispose();
 

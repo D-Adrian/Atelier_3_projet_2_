@@ -9,8 +9,7 @@ import java.awt.event.ActionListener;
 
 public class AddNewProject extends JFrame {
 
-    public AddNewProject()
-    {
+    public AddNewProject() {
 
         JFrame f = this;
 
@@ -35,7 +34,6 @@ public class AddNewProject extends JFrame {
         description.setBounds(135, 75, 350, 150);
 
 
-
         JLabel np = new JLabel("Nom du Projet:");
         np.setBounds(20, 20, 100, 30);
         JLabel desc = new JLabel("Description:");
@@ -53,8 +51,8 @@ public class AddNewProject extends JFrame {
 
                 Request request = new Request();
                 request.newProject(nomProjet.getText(), description.getText());
-                new PopupProject(" Project successfully created ! ");
                 f.dispose();
+                new PopupProject(" Project successfully created ! ");
 
             }
         });

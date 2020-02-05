@@ -34,7 +34,13 @@ public class Dashboard extends JFrame {
         JButton a = new JButton("Delete Project");
         JButton e = new JButton("Product List");
 
-        b.addActionListener(e1 -> new AddNewProject());
+        b.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AddNewProject();
+                dispose();
+            }
+        });
 
         this.setSize(600, 600);
         this.setLocationRelativeTo(null);
@@ -90,6 +96,23 @@ public class Dashboard extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 ProductListAdmin ep = new ProductListAdmin();
+
+            }
+        });
+
+        c.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                for (int i=0; i<tableau.getColumnCount(); i++) {
+                    if(tableau.getColumnName(i).equals("id project")) {
+                        Object obj = tableau.getValueAt(tableau.getSelectedRow(), i);
+                        String idProject = (String) (obj);
+
+                        new EditProjectAdmin(idProject);
+                        uw.dispose();
+                    }
+                }
 
             }
         });
