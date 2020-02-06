@@ -13,7 +13,7 @@ import java.util.List;
 
 public class DevisWindow extends JFrame {
 
-    String[] header = {"Designation", "Unit", "Amount", "Price", "Total"};
+    String[] header = {"Designation", "Price"};
     ModeleStatic model = new ModeleStatic(header);
     TableDevis devis;
     ArrayList<String> arrivalInfo = new ArrayList<String>();
@@ -37,7 +37,7 @@ public class DevisWindow extends JFrame {
 
         List<String> values;
         try {
-            values = this.requestsSQL.gainTotal();
+            values = this.requestsSQL.DisplayDevis();
             if (!values.isEmpty()) {
                 int i = 0;
 
@@ -45,14 +45,14 @@ public class DevisWindow extends JFrame {
                     this.arrivalInfo.add(infoArrive);
                     i++;
                     if (i == this.header.length) {
-                        this.model.addInformation(new TableDevis(this.arrivalInfo.get(0), this.arrivalInfo.get(1), this.arrivalInfo.get(2), this.arrivalInfo.get(3), this.arrivalInfo.get(4)));
+                        this.model.addInformation(new TableDevis(this.arrivalInfo.get(0), this.arrivalInfo.get(1)));
                         this.arrivalInfo.clear();
                         i = 0;
                     }
                 }
 
             }
-            else { this.devis = new TableDevis(" ", " "," "," "," ");}
+            else { this.devis = new TableDevis(" ", " ");}
         } catch (Exception i) {
             System.out.println(i);
         }

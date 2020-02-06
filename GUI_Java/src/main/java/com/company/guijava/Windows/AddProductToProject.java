@@ -18,6 +18,10 @@ public class AddProductToProject extends JFrame {
     private List<String> materialInfo;
     private String prix_ht;
 
+    /**
+     * Permet d'ajouter un produit à un projet
+     * @param idProject : Recupere l'id du Projet
+     */
 
     public AddProductToProject(String idProject) {
 

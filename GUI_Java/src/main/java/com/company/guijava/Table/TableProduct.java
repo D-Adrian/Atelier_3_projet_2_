@@ -13,7 +13,7 @@ public class TableProduct implements ITable {
     private List<String> listValues = new ArrayList<>();
 
     /**
-     *  TableProject constructor, used to set all the column values of our table
+     *  TableProduct constructor, used to set all the column values of our table
      * @param nom_produit product name
      * @param date_ajout creation date
      */

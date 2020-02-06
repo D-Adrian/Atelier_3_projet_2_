@@ -11,6 +11,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This
+ */
+
 public class AboutProject extends JFrame {
     String[] header = {"id", "id_projet", "id_produit", "largeur_totale", "longueur_totale", "epaisseur_totale", "prix_ht", "tva"};
     ModeleStatic model = new ModeleStatic(header);
@@ -27,15 +31,15 @@ public class AboutProject extends JFrame {
 
         JPanel buttonPan = new JPanel();
 
-        JButton b = new JButton("Add Product");
-        JButton c = new JButton("Edit Product");
-        JButton d = new JButton("Delete Product");
+        JButton add_product = new JButton("Add Product");
+        JButton edit_product = new JButton("Edit Product");
+        JButton delete_product = new JButton("Delete Product");
 
         this.setSize(600, 600);
         this.setLocationRelativeTo(null);
-        buttonPan.add(b);
-        buttonPan.add(c);
-        buttonPan.add(d);
+        buttonPan.add(add_product);
+        buttonPan.add(edit_product);
+        buttonPan.add(delete_product);
 
         List<String> values;
         try {
@@ -66,7 +70,7 @@ public class AboutProject extends JFrame {
         this.add(panelTab, BorderLayout.CENTER);
         this.add(buttonPan, BorderLayout.SOUTH);
 
-        b.addActionListener(new ActionListener() {
+        add_product.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -76,7 +80,7 @@ public class AboutProject extends JFrame {
             }
         });
 
-        c.addActionListener(new ActionListener() {
+        edit_product.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (int i = 0; i < tableau.getColumnCount(); i++) {
@@ -93,7 +97,7 @@ public class AboutProject extends JFrame {
         });
 
 
-        d.addActionListener(new ActionListener() {
+        delete_product.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (int i = 0; i < tableau.getColumnCount(); i++) {

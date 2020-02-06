@@ -7,21 +7,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is used to create a line of a table containing information about a cargo, like project name, creation date,
- * project description, end date
+ * This class is used to create a line of a table containing information about a Product-Project, like id product_project, project id, product id,
+ * width, height, thickness, price, tva
  */
 public class TableDetails implements ITable {
     private List<String> listValues = new ArrayList<>();
 
     /**
-     *  TableProject constructor, used to set all the column values of our table
-     * @param id_projet project name
-     * @param id_produit creation date
-     * @param largeur_totale creation date
-     * @param longueur_totale creation date
-     * @param epaisseur_totale creation date
-     * @param prix_ht creation date
-     * @param tva creation date
+     *  TableDetails constructor, used to set all the column values of our table
+     * @param id id product_project
+     * @param id_projet project id
+     * @param id_produit product id
+     * @param largeur_totale width
+     * @param longueur_totale height
+     * @param epaisseur_totale thickness
+     * @param prix_ht price
+     * @param tva tva
      */
     public TableDetails(String id, String id_projet, String id_produit, String largeur_totale, String longueur_totale, String epaisseur_totale, String prix_ht, String tva) {
         super();

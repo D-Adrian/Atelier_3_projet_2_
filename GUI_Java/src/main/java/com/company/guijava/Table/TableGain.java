@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is used to create a line of a table containing information about a cargo, like project name, creation date,
+ * This class is used to create a line of a table containing information about earnings, like month, earnings
  * project description, end date
  */
 public class TableGain implements ITable {
@@ -15,8 +15,8 @@ public class TableGain implements ITable {
 
     /**
      *  TableProject constructor, used to set all the column values of our table
-     * @param mois project name
-     * @param gain creation date
+     * @param mois month
+     * @param gain earnings
      */
     public TableGain(String mois, String gain) {
         super();

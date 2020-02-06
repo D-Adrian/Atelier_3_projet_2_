@@ -59,7 +59,7 @@ public class AdminMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE D'INSCRIPTION
 
-                Gui g = new Gui();
+                new Gui();
                 window.dispose();
             }
         });
@@ -68,7 +68,7 @@ public class AdminMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE D'INSCRIPTION
 
-                StatsWindow sw = new StatsWindow();
+                new StatsWindow();
             }
         });
 
@@ -77,7 +77,7 @@ public class AdminMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE D'INSCRIPTION
 
-                Dashboard db = new Dashboard();
+               new Dashboard();
             }
         });
 
@@ -86,7 +86,7 @@ public class AdminMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE D'INSCRIPTION
 
-                DevisWindow dw = new DevisWindow();
+                new DevisWindow();
             }
         });
 

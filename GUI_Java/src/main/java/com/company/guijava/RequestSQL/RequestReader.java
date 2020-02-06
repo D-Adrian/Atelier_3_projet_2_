@@ -6,9 +6,20 @@ import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * La classe sert à lire les requêtes
+ */
+
 public class RequestReader {
+
     public RequestReader() {
     }
+
+    /**
+     * Permet de lire la requête
+     * @param results : resultat de la requête
+     * @return : retourne l'ensemble des valeurs obtenu
+     */
 
     public List<String> seeRequest(ResultSet results) {
         ArrayList values = new ArrayList();

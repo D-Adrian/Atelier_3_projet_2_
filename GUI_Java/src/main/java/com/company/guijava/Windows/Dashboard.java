@@ -28,13 +28,13 @@ public class Dashboard extends JFrame {
 
         JPanel buttonPan = new JPanel();
 
-        JButton b = new JButton("New Project");
-        JButton c = new JButton("Edit Project");
-        JButton d = new JButton("End a Project");
-        JButton a = new JButton("Delete Project");
-        JButton e = new JButton("Product List");
+        JButton new_project = new JButton("New Project");
+        JButton edit_project = new JButton("Edit Project");
+        JButton end_a_project = new JButton("End Project");
+        JButton delete_project = new JButton("Delete Project");
+        JButton product_list = new JButton("Product List");
 
-        b.addActionListener(new ActionListener() {
+        new_project.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new AddNewProject();
@@ -45,11 +45,11 @@ public class Dashboard extends JFrame {
         this.setSize(600, 600);
         this.setLocationRelativeTo(null);
         //this.setLayout(null);
-        buttonPan.add(b);
-        buttonPan.add(c);
-        buttonPan.add(d);
-        buttonPan.add(a);
-        buttonPan.add(e);
+        buttonPan.add(new_project);
+        buttonPan.add(edit_project);
+        buttonPan.add(end_a_project);
+        buttonPan.add(delete_project);
+        buttonPan.add(product_list);
 
 
         List<String> values;
@@ -91,7 +91,7 @@ public class Dashboard extends JFrame {
         this.add(buttonPan, BorderLayout.SOUTH);
 
 
-        e.addActionListener(new ActionListener() {
+        product_list.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -100,7 +100,7 @@ public class Dashboard extends JFrame {
             }
         });
 
-        c.addActionListener(new ActionListener() {
+        edit_project.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -117,7 +117,7 @@ public class Dashboard extends JFrame {
             }
         });
 
-        d.addActionListener(new ActionListener() {
+        end_a_project.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (int i=0; i<tableau.getColumnCount(); i++) {
@@ -134,7 +134,7 @@ public class Dashboard extends JFrame {
             }
         });
 
-        a.addActionListener(new ActionListener() {
+        delete_project.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (int i=0; i<tableau.getColumnCount(); i++) {

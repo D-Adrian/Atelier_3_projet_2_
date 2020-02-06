@@ -7,25 +7,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is used to create a line of a table containing information about a cargo, like project name, creation date,
+ * This class is used to create a line of a table containing information about a Quote, like project name, creation date,
  * project description, end date
  */
 public class TableDevis implements ITable {
     private List<String> listValues = new ArrayList<>();
 
     /**
-     *  TableProject constructor, used to set all the column values of our table
-     * @param Designation project name
-     * @param Unit creation date
+     *  TableDevis constructor, used to set all the column values of our table
+     * @param Designation quote name
+     * @param Price price
      */
-    public TableDevis(String Designation, String Unit, String Amount, String Price, String Total) {
+    public TableDevis(String Designation, String Price) {
         super();
 
         this.listValues.add(Designation);
-        this.listValues.add(Unit);
-        this.listValues.add(Amount);
         this.listValues.add(Price);
-        this.listValues.add(Total);
 
     }
 

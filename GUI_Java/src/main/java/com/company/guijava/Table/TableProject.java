@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is used to create a line of a table containing information about a cargo, like project name, creation date,
+ * This class is used to create a line of a table containing information about a Project, like project name, creation date,
  * project description, end date
  */
 public class TableProject implements ITable {
