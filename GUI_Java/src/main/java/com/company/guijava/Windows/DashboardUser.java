@@ -11,6 +11,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * La classe permet de crée un dashboard affichant tout les projets de l'utilisateur connecté
+ */
+
 public class DashboardUser extends JFrame {
 
     String[] header = {"id project", "nom du projet", "date de création", "description du projet", "date de fin"};
@@ -29,17 +34,17 @@ public class DashboardUser extends JFrame {
         JPanel buttonPan = new JPanel();
 
 
-        JButton b = new JButton("New Project");
-        JButton c = new JButton("Edit my Project");
-        JButton e = new JButton("Product List");
+        JButton new_project = new JButton("New Project");
+        JButton edit_my_project = new JButton("Edit my Project");
+        JButton product_list = new JButton("Product List");
 
 
         this.setSize(600, 600);
         this.setLocationRelativeTo(null);
         //this.setLayout(null);
-        buttonPan.add(b);
-        buttonPan.add(c);
-        buttonPan.add(e);
+        buttonPan.add(new_project);
+        buttonPan.add(edit_my_project);
+        buttonPan.add(product_list);
 
 
         List<String> values;
@@ -74,7 +79,7 @@ public class DashboardUser extends JFrame {
 
 
 
-        b.addActionListener(new ActionListener() {
+        new_project.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -84,7 +89,7 @@ public class DashboardUser extends JFrame {
             }
         });
 
-        e.addActionListener(new ActionListener() {
+        product_list.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (int i=0; i<tableau.getColumnCount(); i++) {
@@ -102,7 +107,7 @@ public class DashboardUser extends JFrame {
             }
         });
 
-        c.addActionListener(new ActionListener() {
+        edit_my_project.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (int i=0; i<tableau.getColumnCount(); i++) {

@@ -10,6 +10,11 @@ import java.util.List;
 
 public class EditProjectAdmin extends JFrame {
 
+    /**
+     * La méthode permet d'éditer n'importe quel projet en mode admin
+     * @param id_Project : id du projet
+     */
+
     public EditProjectAdmin(String id_Project)
     {
 

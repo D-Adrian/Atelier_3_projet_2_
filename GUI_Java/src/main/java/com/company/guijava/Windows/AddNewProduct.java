@@ -8,12 +8,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * La classe permet d'ajouter un nouveau projet
+ * La classe permet d'ajouter un nouveau produit
  */
 
-public class AddNewProject extends JFrame {
+public class AddNewProduct extends JFrame {
 
-    public AddNewProject() {
+    public AddNewProduct() {
 
         JFrame f = this;
 
@@ -21,42 +21,33 @@ public class AddNewProject extends JFrame {
         final JLabel label = new JLabel();
         label.setBounds(210, 10, 300, 40);
         label.setFont(new Font("Courier New", Font.BOLD, 18));
-        this.setSize(500, 400);
+        this.setSize(500, 300);
         this.setLocationRelativeTo(null);
         this.getContentPane().add(label);
         this.setLayout(null);
         this.setVisible(true);
 
         JButton validate = new JButton("Validate");
-        validate.setBounds(350, 300, 100, 50);
+        validate.setBounds(350, 200, 100, 50);
         this.add(validate);
 
-        final JTextField nomProjet = new JTextField();
-        nomProjet.setBounds(135, 20, 350, 30);
+        final JTextField nomProduct = new JTextField();
+        nomProduct.setBounds(200, 120, 200, 30);
 
-        final JTextField description = new JTextField();
-        description.setBounds(135, 75, 350, 150);
-
-
-        JLabel np = new JLabel("Nom du Projet:");
-        np.setBounds(20, 20, 100, 30);
-        JLabel desc = new JLabel("Description:");
-        desc.setBounds(20, 75, 100, 30);
+        JLabel np = new JLabel("Nom du Produit :");
+        np.setBounds(40, 120, 140, 30);
 
         this.add(np);
-        this.add(desc);
-        this.add(nomProjet);
-        this.add(description);
-
+        this.add(nomProduct);
 
         validate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
                 Request request = new Request();
-                request.newProject(nomProjet.getText(), description.getText());
+                request.newProduct(nomProduct.getText());
                 f.dispose();
-                new PopupProject(" Project successfully created ! ");
+                new PopupProduct(" Produit successfully created ! ");
 
             }
         });

@@ -11,6 +11,11 @@ import java.util.List;
 
 public class StatsWindow extends JFrame {
 
+
+    /**
+     * La méthode permet d'afficher une nouvelle fenêtre avec toutes les statistiques de l'entreprise
+     */
+
     public StatsWindow() {
 
         JPanel labelPan = new JPanel();
@@ -34,7 +39,7 @@ public class StatsWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                GainWindow gw = new GainWindow();
+                new GainWindow();
 
             }
         });
@@ -46,8 +51,6 @@ public class StatsWindow extends JFrame {
         this.setTitle("Stats");
         this.add(buttonPan, BorderLayout.SOUTH);
         this.add(labelPan, BorderLayout.CENTER);
-        //add(couleurs);
-        //this.add(Projet);
 
     }
 }

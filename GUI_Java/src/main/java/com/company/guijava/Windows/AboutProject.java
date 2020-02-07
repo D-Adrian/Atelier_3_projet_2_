@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This
+ * la classe permet d'avoir les informations sur un projet
  */
 
 public class AboutProject extends JFrame {

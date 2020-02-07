@@ -7,6 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+/**
+ * La classe permet d'ajouter un nouveau produit à un projet existant
+ */
+
 public class AddProductToProject extends JFrame {
     private boolean isFull=false;
 

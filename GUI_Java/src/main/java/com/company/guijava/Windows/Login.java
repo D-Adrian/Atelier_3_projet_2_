@@ -31,6 +31,10 @@ public class Login extends JFrame {
         return text.getText();
     }
 
+    /**
+     * La méthode permet de crée la fenêtre de connexion au démarrage de l'application
+     */
+
     public Login() {
 
         JFrame login = this;
@@ -99,14 +103,6 @@ public class Login extends JFrame {
         this.add(panImg);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Permet de fermer le processus avec la croix rouge
 
-        /*
-        com.company.guijava.Connexion co = new com.company.guijava.Connexion();
-        b.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                co.connect(getText(),getValue());
-            }
-        });*/
-
         this.setLocationRelativeTo(null); // Affiche la fenetre au centre de l'écran
         this.setVisible(true);
 
@@ -115,7 +111,7 @@ public class Login extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE D'INSCRIPTION
 
-                AccountCreation acc = new AccountCreation();
+                new AccountCreation();
             }
         });
 

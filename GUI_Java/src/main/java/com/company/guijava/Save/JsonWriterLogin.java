@@ -39,7 +39,7 @@ public class JsonWriterLogin {
      * @param password      String : the user's password that we want to save
      * @param filePath      String : String : the filepath of the json that we want to open and where we will write
      * @param id            String : user's id
-     * @param droit         String :
+     * @param droit         String : user or admin
      */
     public void writeInFileSession(String mail, String password, String id , String droit, String filePath) {
         JSONObject obj = new JSONObject();

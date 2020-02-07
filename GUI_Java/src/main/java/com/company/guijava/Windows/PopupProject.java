@@ -11,6 +11,11 @@ import java.io.IOException;
 
 public class PopupProject extends JFrame{
 
+    /**
+     * La méthode permet de crée une popup après avoir crée un projet
+     * @param message : affiche le message de la popup
+     */
+
     public PopupProject(String message) {
 
 

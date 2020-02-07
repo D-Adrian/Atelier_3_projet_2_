@@ -4,38 +4,14 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+/**
+ * La classe permet de crée un menu admin différent du menu utilisateur
+ */
+
 public class AdminMenu extends JFrame {
 
     public AdminMenu() {
-
-        //JFrame am = new JFrame("Admin Menu");
-/*
-        JMenuBar menuBar = new JMenuBar();
-
-        JMenu menu = new JMenu("Menu");
-
-        menu.add("Stats").addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE STATS
-
-                StatsWindow sw = new StatsWindow();
-            }
-        });
-        menuBar.add(menu);
-        setJMenuBar(menuBar);
-
-
-        com.company.guijava.Panel pan = new com.company.guijava.Panel("imgs/Leroy_Merlu.png");
-        pan.setVisible(true);
-
-        this.setSize(600, 600);
-        this.setLocationRelativeTo(null);
-        this.setLayout(null);
-        this.add(pan);
-        this.setVisible(true);
-        this.add(menuBar);
-        */
-
 
         JFrame window = this;
         this.setSize(600, 500);
@@ -72,7 +48,6 @@ public class AdminMenu extends JFrame {
             }
         });
 
-        JMenu menu2 = new JMenu("Dashboard");
         menu.add("| Dashboard").addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE D'INSCRIPTION
@@ -81,12 +56,11 @@ public class AdminMenu extends JFrame {
             }
         });
 
-        JMenu menu3 = new JMenu("Devis");
         menu.add("| Devis").addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE D'INSCRIPTION
 
-                new DevisWindow();
+                new DevisWindowAdmin();
             }
         });
 
@@ -102,4 +76,5 @@ public class AdminMenu extends JFrame {
         this.setVisible(true);
     }
 }
+
 

@@ -7,6 +7,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * La classe permet de crée un compte utilisateur
+ */
+
 public class AccountCreation extends JFrame {
 
     public AccountCreation() {
@@ -84,15 +88,11 @@ public class AccountCreation extends JFrame {
 
         Button but = new Button();
 
-        //JLabel l10 = new JLabel("role utilisateur :");
-        //l10.setBounds(20, 515, 150, 30);
+        /** AJOUT DU BOUTON "create" */
 
 
-        /** AJOUT DU BOUTON "b" */
-
-
-        JButton b = new JButton("Create");
-        b.setBounds(500, 600, 80, 50);
+        JButton create = new JButton("Create");
+        create.setBounds(500, 600, 80, 50);
 
 
         /** AJOUTS DES CASES CREES PRECEDEMENT */
@@ -118,16 +118,14 @@ public class AccountCreation extends JFrame {
         acc.add(distance);
         acc.add(but);
 
-        //acc.add(l10);
-
-        acc.add(b); // AJOUT DU BOUTON "b" SUR LA FENETRE "acc"
+        acc.add(create); // AJOUT DU BOUTON "create" SUR LA FENETRE "acc"
 
         acc.setSize(600, 700); // permet de définir les dimensions
         acc.setLocationRelativeTo(null); // Affiche la fenetre au centre de l'écran
         acc.setLayout(null);
         acc.setVisible(true); // Faire apparaître la fenêtre acc
 
-        b.addActionListener(new ActionListener() {
+        create.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
 
@@ -146,19 +144,17 @@ public class AccountCreation extends JFrame {
 
                 JTextArea  textArea1 = new JTextArea (data); // ECRIT LA DATA DANS UNE TextArea
                 JScrollPane scrollPane = new JScrollPane(textArea1); // Met le TextArea dans un ScrollPanel plus simple pour l'affichage
-                //pannel.setBounds(20, 600, 400, 100);
                 scrollPane.setPreferredSize(new Dimension(560, 222)); // défini les dimensions du ScrollPanel
                 pannel.add(scrollPane); // Add ScrollPanel to the Pannel
                 acc.getContentPane().add(pannel); // Add the Pannel to the window
                 acc.setVisible(true); // Set it visible
-                //label.setText(data);
 
 
                 Request request = new Request();
                 request.signupRequest(nom.getText(), prenom.getText(), mail.getText(),password.getText(),numero.getText(),adresse.getText(),postal.getText(),siege.getText(),distance.getText());
 
 
-                PopupCreation pc = new PopupCreation();
+                new PopupCreation();
 
                 acc.dispose();
 

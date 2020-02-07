@@ -2,16 +2,18 @@ package com.company.guijava.Windows;
 
 import com.company.guijava.ModeleStatic;
 import com.company.guijava.RequestSQL.Request;
-import com.company.guijava.Table.TableDetails;
 import com.company.guijava.Table.TableDevis;
-import com.company.guijava.Table.TableGain;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DevisWindow extends JFrame {
+/**
+ * La classe permet d'afficher une fenêtre affichant tout les devis de ses projets
+ */
+
+public class DevisWindowUser extends JFrame {
 
     String[] header = {"Designation", "Price"};
     ModeleStatic model = new ModeleStatic(header);
@@ -21,23 +23,18 @@ public class DevisWindow extends JFrame {
     Request requestsSQL = new Request();
     JPanel panelTab = new JPanel();
 
-
-    public DevisWindow() {
+    public DevisWindowUser() {
 
         JFrame frame = new JFrame("Devis Information");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        final JLabel label = new JLabel();
-        label.setBounds(210, 10, 300, 40);
-        label.setFont(new Font("Courier New",Font.BOLD, 18));
-        this.getContentPane().add(label);
-        this.setLayout(null);
+
         this.setSize(600, 600);
         this.setLocationRelativeTo(null);
-        this.setLayout(null);
+        this.setLayout(new BorderLayout());
 
         List<String> values;
         try {
-            values = this.requestsSQL.DisplayDevis();
+            values = this.requestsSQL.DisplayDevisUser();
             if (!values.isEmpty()) {
                 int i = 0;
 
@@ -52,7 +49,8 @@ public class DevisWindow extends JFrame {
                 }
 
             }
-            else { this.devis = new TableDevis(" ", " ");}
+            else {
+                this.devis = new TableDevis(" ", " ");}
         } catch (Exception i) {
             System.out.println(i);
         }

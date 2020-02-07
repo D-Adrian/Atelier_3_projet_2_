@@ -11,6 +11,10 @@ import java.util.List;
 
 public class Gui extends JFrame {
 
+    /**
+     * La méthode affiche la première fenêtre de l'application après la connexion (user menu)
+     */
+
     public Gui() {
         super();
         addWindowListener(new WindowAdapter() {
@@ -62,9 +66,17 @@ public class Gui extends JFrame {
 
         menu.add("| Dashboard").addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE DE VERIF
-                //Dashboard db = new Dashboard();
+            public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE DE Dashboard
+
                 new DashboardUser();
+            }
+        });
+
+        menu.add("| Devis").addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { // PERMET D'OUVRIR LA FENETRE DE Devis
+
+                new DevisWindowUser();
             }
         });
 

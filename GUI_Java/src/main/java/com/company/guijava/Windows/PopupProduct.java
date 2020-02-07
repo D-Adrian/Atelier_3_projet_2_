@@ -9,30 +9,31 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class PopupErrorConnexion extends JFrame{
+public class PopupProduct extends JFrame{
 
     /**
-     * La méthode permet de crée une popup quand l'utilisateur à rentré de mauvaises informations de connexion
+     * La méthode permet de crée une popup après avoir crée un produit
+     * @param message : affiche le message de la popup
      */
 
-    public PopupErrorConnexion() {
+    public PopupProduct(String message) {
 
 
         JPanel p = new JPanel();
 
         JLabel jp = new JLabel();
-        jp.setText(" Account not found ! ");
+        jp.setText(message);
         Border margin = new EmptyBorder(15, 14, 25, 10);
         jp.setBorder(margin);
 
         BufferedImage img = null;
         try{
-            img = ImageIO.read(new File("imgs/computer-icons-warning-sign-icon-design-exclamation-mark.jpg"));
+            img = ImageIO.read(new File("imgs/gdpr-liste-cocher.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Image dimg = img.getScaledInstance(50,50,Image.SCALE_SMOOTH);
+        Image dimg = img.getScaledInstance(70,70,Image.SCALE_SMOOTH);
         ImageIcon imageIcon = new ImageIcon(dimg);
         JPanel panImg= new JPanel(new GridLayout(1, 1));
         JLabel labelimage = new JLabel(imageIcon);
@@ -43,7 +44,7 @@ public class PopupErrorConnexion extends JFrame{
         p.add(panImg, BorderLayout.CENTER);
         p.add(jp, BorderLayout.SOUTH);
 
-        this.setSize(160, 140);
+        this.setSize(220, 170);
         this.add(p);
         this.setLocationRelativeTo(null);
         this.setResizable(false);

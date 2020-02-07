@@ -18,6 +18,10 @@ public class EditProduct extends JFrame {
     private List<String> materialInfo;
     private String prix_ht;
 
+    /**
+     * La méthode permet d'éditer un projet déja existant
+     * @param idProductProject : id du produit projet
+     */
 
     public EditProduct(String idProductProject) {
         super();

@@ -12,6 +12,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *La classe permet d'afficher un dashboard Admin différent de celui de l'utilisateur
+ */
+
 public class Dashboard extends JFrame {
     String[] header = {"id project", "nom du projet", "date de création", "description du projet", "date de fin"};
     ModeleStatic model = new ModeleStatic(header);
@@ -44,7 +48,7 @@ public class Dashboard extends JFrame {
 
         this.setSize(600, 600);
         this.setLocationRelativeTo(null);
-        //this.setLayout(null);
+
         buttonPan.add(new_project);
         buttonPan.add(edit_project);
         buttonPan.add(end_a_project);
@@ -89,13 +93,14 @@ public class Dashboard extends JFrame {
         this.panelTab.add(new JScrollPane(tableau), BorderLayout.CENTER);
         this.add(panelTab, BorderLayout.CENTER);
         this.add(buttonPan, BorderLayout.SOUTH);
+        buttonPan.setLayout(new GridLayout(1,4));
 
 
         product_list.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                ProductListAdmin ep = new ProductListAdmin();
+                new ProductListAdmin();
 
             }
         });

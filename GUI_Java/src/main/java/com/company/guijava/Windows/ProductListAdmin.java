@@ -6,6 +6,8 @@ import com.company.guijava.Table.TableProduct;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,24 +20,27 @@ public class ProductListAdmin extends JFrame {
     Request requestsSQL = new Request();
     JPanel panelTab = new JPanel();
 
+    /**
+     * la méthode permet de lister tout les produits que propose l'entreprise que en mode admin
+     */
+
     public ProductListAdmin() {
 
-        JFrame uw = new JFrame("Product List");
+        JFrame uw = this;
         this.setTitle("Product List");
 
         JPanel buttonPan = new JPanel();
 
 
-        JButton b = new JButton("Add Product");
-        JButton d = new JButton("Delete Product");
+        JButton add_product = new JButton("Add Product");
+        JButton delete_product = new JButton("Delete Product");
 
 
         this.setSize(600, 600);
         this.setLocationRelativeTo(null);
-        //this.setLayout(null);
-        buttonPan.add(b);
-        buttonPan.add(d);
 
+        buttonPan.add(add_product);
+        buttonPan.add(delete_product);
 
 
         List<String> values;
@@ -54,11 +59,20 @@ public class ProductListAdmin extends JFrame {
                     }
                 }
 
+            } else {
+                this.door = new TableProduct(" ", " ");
             }
-            else { this.door = new TableProduct(" ", " ");}
         } catch (Exception i) {
             System.out.println(i);
         }
+
+        add_product.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AddNewProduct();
+            }
+        });
+
 
         this.panelTab.setLayout(new BorderLayout());
         JTable tableau = new JTable(this.model);
@@ -66,6 +80,25 @@ public class ProductListAdmin extends JFrame {
         this.add(panelTab, BorderLayout.CENTER);
         this.add(buttonPan, BorderLayout.SOUTH);
 
+        delete_product.addActionListener(new ActionListener() {
+                 @Override
+                 public void actionPerformed(ActionEvent e) {
+                     for (int i = 0; i < tableau.getColumnCount(); i++) {
+                         if (tableau.getColumnName(i).equals("nom du produit")) {
+                             Object obj = tableau.getValueAt(tableau.getSelectedRow(), i);
+                             String nameProduct = (String) (obj);
+
+                             Request request = new Request();
+                             request.deleteProduct(nameProduct);
+                             dispose();
+                             new ProductListAdmin();
+                         }
+                     }
+                 }
+             }
+        );
+
         this.setVisible(true);
+
     }
 }

@@ -6,6 +6,10 @@ import javax.swing.border.EmptyBorder;
 
 public class PopupCreation extends JFrame {
 
+    /**
+     * La méthode permet de crée une popup après avoir crée son compte utilisateur
+     */
+
     public PopupCreation() {
 
         int TIME_VISIBLE = 3000;

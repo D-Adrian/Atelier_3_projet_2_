@@ -26,7 +26,6 @@ public class GainWindow extends JFrame {
 
         this.setSize(600, 600);
         this.setLocationRelativeTo(null);
-        //this.setLayout(null);
 
         List<String> values;
         try {

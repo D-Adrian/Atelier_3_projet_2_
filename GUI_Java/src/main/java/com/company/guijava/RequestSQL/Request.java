@@ -645,15 +645,15 @@ public class Request {
 
 
 
-    public List<String> DisplayDevis (){
+    public List<String> DisplayDevisUser(){
         JSonReader register = new JSonReader();
         List<String> loginRegister = register.readFileLoginSession("src/main/java/com/company/guijava/userSession.json");
 
-        String displayP = "SELECT P.nom_produit, PP.prix_ht) " +
+        String displayP = "SELECT P.nom_produit, PP.prix_ht " +
                 "FROM produit_projet as PP " +
                 "LEFT JOIN produit as P ON P.id=PP.id_produit " +
                 "LEFT JOIN projet ON projet.id=PP.id_projet  " +
-                "LEFT JOIN utilisateur as U ON U.id=projet.id_utilisateur" +
+                "LEFT JOIN utilisateur as U ON U.id=projet.id_utilisateur " +
                 " WHERE U.id=? ";
 
         try {
@@ -663,7 +663,6 @@ public class Request {
             ResultSet result = prep1.executeQuery();
             List<String> values = request.seeRequest(result);
             prep1.close();
-
             return values;
 
 
@@ -671,4 +670,67 @@ public class Request {
             return null;
         }
     }
+
+    public List<String> DisplayDevisAdmin(){
+        JSonReader register = new JSonReader();
+        List<String> loginRegister = register.readFileLoginSession("src/main/java/com/company/guijava/userSession.json");
+
+        String displayP = "SELECT P.nom_produit, PP.prix_ht " +
+                "FROM produit_projet as PP " +
+                "LEFT JOIN produit as P ON P.id=PP.id_produit " +
+                "LEFT JOIN projet ON projet.id=PP.id_projet  " +
+                "LEFT JOIN utilisateur as U ON U.id=projet.id_utilisateur ";
+
+        try {
+            prep1 = connexion.connect().prepareStatement(displayP, ResultSet.TYPE_SCROLL_SENSITIVE);
+            prep1.setString(1, loginRegister.get(2));
+
+            ResultSet result = prep1.executeQuery();
+            List<String> values = request.seeRequest(result);
+            prep1.close();
+            return values;
+
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public void newProduct (String name_product) {
+
+        String requestnewProduct = "INSERT INTO produit (nom_produit,date_ajout) " +
+                "VALUES (?,?)";
+
+        java.util.Date utilDate = new java.util.Date();
+        java.sql.Date date = new java.sql.Date(utilDate.getTime());
+
+        try {
+            prep1 = connexion.connect().prepareStatement(requestnewProduct);
+            prep1.setString(1, name_product);
+            prep1.setDate(2, date);
+
+            prep1.executeUpdate();
+            prep1.close();
+
+        } catch (Exception e) {
+            System.out.println("not insert");
+        }
+    }
+
+    public void deleteProduct(String nameProduct) {
+        String requestDeleteProduct = "DELETE FROM produit " +
+                " WHERE nom_produit = ?";
+
+        try {
+            prep1 = connexion.connect().prepareStatement(requestDeleteProduct);
+            prep1.setString(1, nameProduct);
+            prep1.executeUpdate();
+            prep1.close();
+            System.out.println("insert");
+
+        } catch (Exception e) {
+            System.out.println("not insert");
+        }
+    }
+
 }
