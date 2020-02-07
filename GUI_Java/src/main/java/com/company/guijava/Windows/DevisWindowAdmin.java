@@ -34,7 +34,7 @@ public class DevisWindowAdmin extends JFrame {
 
         List<String> values;
         try {
-            values = this.requestsSQL.DisplayDevisUser();
+            values = this.requestsSQL.DisplayDevisAdmin();
             if (!values.isEmpty()) {
                 int i = 0;
 

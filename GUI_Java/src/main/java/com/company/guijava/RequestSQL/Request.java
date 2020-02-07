@@ -643,7 +643,10 @@ public class Request {
         }
     }
 
-
+    /**
+     * La requête permet d'afficher tout les devis de l'utilisateur
+     * @return : retourne une liste contenant le nom produit et le prix
+     */
 
     public List<String> DisplayDevisUser(){
         JSonReader register = new JSonReader();
@@ -670,6 +673,12 @@ public class Request {
             return null;
         }
     }
+
+
+    /**
+     * La requête permet d'afficher tout les devis de tout les utilisateurs
+     * @return : retourne une liste contenant le nom produit et le prix
+     */
 
     public List<String> DisplayDevisAdmin(){
         JSonReader register = new JSonReader();
