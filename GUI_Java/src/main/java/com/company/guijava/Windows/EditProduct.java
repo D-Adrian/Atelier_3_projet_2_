@@ -32,6 +32,7 @@ public class EditProduct extends JFrame {
         Request request = new Request();
         List<String> valuesDimension = request.DisplayProductDimension(idProductProject);
         List<String>valuesOthers = request.DisplayProductMaterialModule(idProductProject);
+        System.out.println(valuesOthers);
 
         final JTextField largeurField = new JTextField();
         largeurField.setBounds(370, 350, 100, 30);
